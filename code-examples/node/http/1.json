@@ -1,0 +1,14 @@
+{
+  "branch": "alex-test",
+  "cloneUrl": "ssh://git@gitlab.ing.net:2222/fruitloops/ing-app-test.git",
+  "commitGroup": "fruitloops",
+  "commitSha": "ebf3d413267c10bb53bb9a89a4a9c9eec8467e3a",
+  "ownerGroup": "fruitloops",
+  "pipelineId": "1289589",
+  "pipelineType": "gitlab_runners",
+  "projectName": "ing-app-test",
+  "repoUrl": "https://gitlab.ing.net/fruitloops/ing-app-test",
+  "name": "@ing-web-cli/plugin-welcome",
+  "status": "started",
+  "version": "0.1.1-undefined-ebf3d413"
+}

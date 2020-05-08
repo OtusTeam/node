@@ -1,0 +1,20 @@
+{
+  "name": "@korzio/abc",
+  "version": "1.0.0",
+  "description": "Node examples for QA",
+  "main": "events.js",
+  "scripts": {
+    "start": "node stream/readable"
+  },
+  "author": "korzio@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "djv": "latest",
+    "lodash": "latest",
+    "pm2": "^3.5.1"
+  },
+  "bundleDependencies": [
+    "djv"
+  ],
+  "keywords": []
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Otus - Презентация занятия 8.10 (TypeScript)</title>
+    <meta charset="utf-8">
+    <link href="assets/styles/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <script src="./assets/js/remark.js"></script>
+    <script>
+    const options = {
+      sourceUrl: 'Презентация занятия 8.10 (TypeScript).md',
+      highlightLanguage: 'javascript',
+      highlightStyle: 'vs',
+    }
+    var slideshow = remark.create(options, (slideshow) => {
+      const indexOfTodo = options.source.indexOf('TODO')
+      if (~indexOfTodo) {
+        const showMoreTextLength = 100
+        const text = options.source.slice(Math.max(0, indexOfTodo - showMoreTextLength), Math.min(indexOfTodo + showMoreTextLength, options.source.length));
+        document.write(`<h1>TODO</h1><h3>${text}</h3>`)
+        slideshow.pause()
+      }
+    })
+    </script>
+</body>
+
+</html>

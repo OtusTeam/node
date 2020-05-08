@@ -1,0 +1,4 @@
+- node processes - https://youtu.be/lvdmOQKDJjk?list=PLAPBs-YOtkxUpMctJJVhwLfh7Nn4QRQKK pstree
+- node buffer
+- https://loopback.io/
+- architecture
