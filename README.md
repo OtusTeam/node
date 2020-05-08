@@ -3,7 +3,11 @@
 **Otus Node.js Developer Course** repository contains materials, presentations, examples and notes. This is a draft version.
 
 Documents are using `markdown` format, and examples are techology specific.
-Folders represent different course blocks
+Folders inside `./code-examples` represent different course block materials.
+
+Please check [FAQ](./FAQ.md) for questions like "How to run markdown presentations".
+
+Any contributions are welcome and have a nice coding!
 
 # About Course
 
