@@ -1,4 +1,4 @@
-const app = require('../app')
+const app = require('./app')
 const debug = require('debug')('expressjs-generator:server')
 const http = require('http')
 
@@ -11,7 +11,7 @@ server.listen(port)
 server.on('error', onError)
 server.on('listening', onListening)
 
-console.log(`Server started on ${port} port`)
+console.log(`Server started on ${port} port test`); 
 
 function normalizePort (val) {
   const port = parseInt(val, 10)

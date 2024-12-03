@@ -1,7 +1,7 @@
 TN:
 SF:routes/users.js
 FN:7,User
-FN:15,<instance_members_initializer>
+FN:16,<instance_members_initializer>
 FN:19,getAll
 FN:23,getById
 FN:27,create
@@ -125,7 +125,7 @@ DA:106,1
 LF:106
 LH:96
 BRDA:7,0,0,1
-BRDA:15,1,0,1
+BRDA:16,1,0,1
 BRDA:19,2,0,1
 BRDA:23,3,0,2
 BRDA:24,4,0,1

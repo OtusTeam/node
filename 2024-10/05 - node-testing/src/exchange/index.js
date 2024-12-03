@@ -1,5 +1,5 @@
-const fetch = require("node-fetch-commonjs")
 
+// На два, один для API другой для бизнес логики.
 module.exports = class Exchange {
   async fetchData() {
     const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js')
@@ -23,3 +23,7 @@ module.exports = class Exchange {
 // Конфигурация проекта для тестирования утилиты tree из предыдущих заданий.
 // Добиться code coverage 95%.
 // Можно использовать пакет для моков файловой системы.
+
+255 -> 11111111
+254 -> 11111110
+252 -> 11111100

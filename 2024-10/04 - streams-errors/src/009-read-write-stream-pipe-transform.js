@@ -7,6 +7,7 @@ const { Transform } = require("stream");
 
   const uppercase = new Transform({
     transform(chunk, encoding, callback) {
+      // Что-то делаем и потом пробрасываем дальше.
       callback(null, chunk.toString().toUpperCase());
     },
   });

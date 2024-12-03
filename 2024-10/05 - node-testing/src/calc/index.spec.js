@@ -1,39 +1,35 @@
-const calc = require('./')
+const calc = require('./');
 
-// describe - test.
-// describe - группу тестов.
+// jest
 
-// beforeEach(() => {
-//   console.log('before Each global');
-// })
-
-before(() => {
-  // start server
-  // start db
-  // mock запуск
-})
-
-after(() => {
-  // stop server
-  // stop db
-  // mock почисти
-})
+// before - 
+// after
+// beforeEach
+// afterEach
 
 
 describe('calc.sum', () => {
   beforeEach(() => {
-      console.log('before Each calc.sum');
-  })
+    console.log('before calc.sum');
+  });
+
+  afterEach(() => {
+    console.log('after calc.sum');
+  });
+
+  // beforeEach(() => {
+  //     console.log('before Each calc.sum');
+  // })
   // Это должно суммировать два целочисленных числа
   test('it should sum two integer number', () => {
     // arrange-act-assert;
 
     // arrange
-    const a = 1
-    const b = 2
+    const a = 1;
+    const b = 2;
 
     // act
-    const result = calc.sum(a, b)
+    const result = calc.sum(a, b);
 
     // assert(expect)
     expect(result).toBe(3);
@@ -84,3 +80,23 @@ describe('calc.multi', () => {
     expect(() => calc.multi(a, b)).toThrow(new Error('a is not a number'));
   })
 })
+
+
+// describe - test.
+// describe - группу тестов.
+
+// beforeEach(() => {
+//   console.log('before Each global');
+// })
+
+// before(() => {
+//   // start server
+//   // start db
+//   // mock запуск
+// })
+
+// after(() => {
+//   // stop server
+//   // stop db
+//   // mock почисти
+// })

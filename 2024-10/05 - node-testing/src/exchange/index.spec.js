@@ -26,7 +26,7 @@ describe('exchange.getData', () => {
       }
     ])});
 
-    const result = await exchange.getData()
+    const result = await exchange.getData();
 
     expect(result).toMatchSnapshot();
   })
