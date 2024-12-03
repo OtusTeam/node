@@ -10,6 +10,9 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+// '/users/:id'
+// '/users/download'
+
 // Настройка шаблонизатора (Pug)
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -18,6 +21,38 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json()); // Для обработки JSON
 app.use(bodyParser.urlencoded({ extended: true })); // Для обработки URL-encoded данных
 app.use(cookieParser()); // Для обработки cookies
+
+
+app.use((req, res, next) => {
+  console.log('middleware 1');
+
+  console.log('middleware 1 req.user', req.user);
+  
+  next();
+});
+
+app.use((req, res, next) => {
+  console.log('middleware 2');
+
+  req.user = { name: 'nik' };
+
+  console.log('middleware 2 req.user', req.user);
+
+  next(new Error('middleware error'));
+});
+
+app.get('/users/download', (req, res) => {
+  console.log('handler /users/download');
+
+  res.json({ download: 'download' });
+});
+
+app.get('/users/:id', (req, res) => {
+  console.log('handler /users/:id');
+
+  res.json({ id: req.params.id });
+});
+
 
 // Маршрут для теста парсеров Body и Cookie
 app.post('/submit', (req, res) => {
@@ -38,8 +73,17 @@ app.get('/set-cookie', (req, res) => {
 });
 
 // Маршрут для отображения HTML через шаблонизатор
-app.get('/', (req, res) => {
-  res.render('index', { title: 'Express Example', message: 'Welcome to Express!' });
+app.get('/', (req, res, next) => {
+  try {
+    console.log('handler /');
+    console.log('handler / req.user', req.user);
+  
+    throw new Error('test error');
+  
+    res.render('index', { title: 'Express Example', message: 'Welcome to Express!' });
+  } catch(err) {
+    next(err);
+  }
 });
 
 // Маршрут для отправки файла через потоки
