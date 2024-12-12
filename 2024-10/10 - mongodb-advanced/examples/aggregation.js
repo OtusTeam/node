@@ -54,190 +54,74 @@ const { start } = require('./clients');
 // groupUnwindMovies();
 
 // lookupUserComments();
-lookupMoviesComments();
-// lookupMoviesFilterComments();
+// lookupMoviesComments();
+lookupMoviesFilterComments();
 
 // outMovies();
 
-// $gte
+// $gte - greater then or equal
 // unwind - что значит?
 
 async function groupMoviesByYears() {
   const { movies } = await start();
-  // movies - client.db('sample_mflix')
-
-  // https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/
-
-  // {
-  //   _id: 2011, // это год
-  //   total: 1040,
-  //   movies: [
-  //     'The Rum Diary',
-  //     'Gnomeo & Juliet',
-  //     'The Crimson Petal and the White',
-  //     'Cowboys & Aliens',
-  //     'Real Steel',
-  //     'Puss in Boots',
-  //     'Captain America: The First Avenger',
-  //     'Generation P',
-  //     'Margaret',
-  //     'Tower Heist',
-  //     'The Smurfs',
-  //     'The Mechanic',
-  //     'Extremely Loud & Incredibly Close',
-  //     'The Tree of Life',
-  //     'Season of the Witch',
-  //     'Atlas Shrugged: Part I',
-  //     'Something Borrowed',
-  //     'Samsara',
-  //     'Drive',
-  //     'Thor',
-  //     'Red Dog',
-  //     'Take Me Home Tonight',
-  //     'Jack and Jill',
-  //     'Conan the Barbarian',
-  //     'Priest',
-  //     'Hoodwinked Too! Hood vs. Evil',
-  //     '6 Month Rule',
-  //     'Red State',
-  //     'Sanctum',
-  //     'From Prada to Nada',
-  //     'The Thing',
-  //     'Black Butterflies',
-  //     'Source Code',
-  //     'A Monster in Paris',
-  //     'Hugo',
-  //     'The Adventures of Tintin',
-  //     'Funkytown',
-  //     'Sucker Punch',
-  //     'The Green Hornet',
-  //     'Hanna',
-  //     'Straw Dogs',
-  //     'The Iron Lady',
-  //     'Asylum Blackout',
-  //     'Inseparable',
-  //     'The Descendants',
-  //     'The Eagle',
-  //     'Water for Elephants',
-  //     'Monte Carlo',
-  //     'Footloose',
-  //     'Midnight Son',
-  //     'Ghost Rider: Spirit of Vengeance',
-  //     'A Princess for Christmas',
-  //     'Megan Is Missing',
-  //     'Paul',
-  //     'The Darkest Hour',
-  //     'George Harrison: Living in the Material World',
-  //     'The Ides of March',
-  //     'Here',
-  //     'Green Lantern',
-  //     'Sonny Boy',
-  //     'Beastly',
-  //     'The Rite',
-  //     'Wuthering Heights',
-  //     "Corman's World: Exploits of a Hollywood Rebel",
-  //     'The Skin I Live In',
-  //     'The Lincoln Lawyer',
-  //     'Rango',
-  //     'About Sunny',
-  //     'Harry Potter and the Deathly Hallows: Part 2',
-  //     'The Muppets',
-  //     'Tyrannosaur',
-  //     'Moneyball',
-  //     'Bag of Bones',
-  //     'Seeking Justice',
-  //     'Seeking Justice',
-  //     'Cars 2',
-  //     'Battle Los Angeles',
-  //     'Limitless',
-  //     'Zookeeper',
-  //     'African Cats',
-  //     'Jane Eyre',
-  //     'Mission: Impossible - Ghost Protocol',
-  //     'Pariah',
-  //     'Captain Thunder',
-  //     'The Future',
-  //     'Your Highness',
-  //     'Father, Son & Holy Cow',
-  //     'We Need to Talk About Kevin',
-  //     'Sidewalls',
-  //     'Bellflower',
-  //     'Rebellion',
-  //     'Judas Kiss',
-  //     'Immortals',
-  //     'Take Me Home',
-  //     'Pig',
-  //     'Scream 4',
-  //     'The Roommate',
-  //     'A Very Harold & Kumar 3D Christmas',
-  //     "The Devil's Double",
-  //     'Deadheads'
-  //   ],
-  //   avgImdbRating: 6.491538461538461,
-  //   minImdbRating: 1.6,
-  //   maxImdbRating: 9.2
-  // }
 
   const res = await movies.collection('movies').aggregate([
     {
       $match: {
         year: { $gte: 2000 }
       }
-    }, // Фильтрация данных, аналог WHERE
+    },
     {
       $group: {
-        // При группировании два вида: колонки группирования, колонки аггрегации.
-
         _id: '$year', // Поля уникальный, по которым делается группирования
-
-        // aggregation fields
+        
         total: { $sum: 1 }, // Добавлять +1
 
-        // Все фильмы в виде массива строк.
-        // movies: { $push: '$title'}, // Добавить в массив значение
+        // movies: { $push: '$title'},
 
         // Average
         avgImdbRating: { $avg: '$imdb.rating' },
         minImdbRating: { $min: '$imdb.rating' },
         maxImdbRating: { $max: '$imdb.rating' }
       }
-    }, // GROUP BY + SELECT
+    },
     {
       $match: {
         avgImdbRating: { $gte: 6.6 }
       }
-    }, // Что-то в виде HAVING. Добавил ещё одну фильтрацию
+    },
+    {
+      $set: {
+        year: '$_id'
+      }
+    },
     {
       $sort: {
-        _id: 1
+        year: 1
       }
-    } // ORDER BY
+    },
+    {
+      $project: {
+        _id: 0
+      }
+    }
   ]).toArray();
 
-// {
-//   $match: {
-//     year: { $gte: 2000 }
-//   }
-// }, // WHERE $match - отфильтрую по годам
-// {
-//   $group: {
-//     // При группировании два вида: колонки группирования, колонки аггрегации.
 
-//     _id: '$year', // Поля уникальный, по которым делается группирования
-
-//     // aggregation fields
-//     total: { $sum: 1 }, // Добавлять +1
-
-//     // Все фильмы в виде массива строк.
-//     // movies: { $push: '$title'}, // Добавить в массив значение
-
-//     // Average
-//     avgImdbRating: { $avg: '$imdb.rating' },
-//     minImdbRating: { $min: '$imdb.rating' },
-//     maxImdbRating: { $max: '$imdb.rating' }
-//   }
-// }, // GROUP BY
-
+  //   // Все фильмы в виде массива строк.
+  //   // movies: { $push: '$title'}, // Добавить в массив значение
+  // // Фильтрация данных, аналог WHERE
+  
+  // {
+  //   $match: {
+  //     avgImdbRating: { $gte: 6.6 }
+  //   }
+  // }, // Что-то в виде HAVING. Добавил ещё одну фильтрацию
+  // {
+  //   $sort: {
+  //     _id: 1
+  //   }
+  // } // ORDER BY
 
 
   console.log(res);
@@ -273,17 +157,6 @@ async function groupUnwindMovies() {
 async function lookupUserComments() {
   const { movies } = await start();
 
-  // users - коллеция и хотим добавить comments
-//   {
-//     "_id" : ObjectId("59b99db7cfa9a34dcd7885bd"),
-//     "name" : "Petyr Baelish",
-//     "email" : "aidan_gillen@gameofthron.es",
-//     "userComments": [
-//       {
-
-//       }
-//     ]
-// }
   const res = await movies.collection('users').aggregate([
     {
       $lookup: {
@@ -369,7 +242,12 @@ async function lookupMoviesFilterComments() {
                 }
               },
               {
-                $limit: 1
+                $sort: {
+                  date: -1
+                }
+              },
+              {
+                $limit: 5
               }
            ],
            as: "comments"
