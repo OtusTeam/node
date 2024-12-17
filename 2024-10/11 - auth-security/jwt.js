@@ -13,6 +13,7 @@ function verifyJWT(token) {
   try {
     return jwt.verify(token, secretKey);
   } catch (err) {
+    console.log(err);
     return null;
   }
 }

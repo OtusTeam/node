@@ -8,6 +8,12 @@ const app = express();
 const PORT = 3000;
 const SECRET_KEY = 'your_secret_key';
 
+// Пример хранилища пользователей (обычно используется база данных)
+const users = [
+  { id: 1, username: 'user1', password: 'password1' },
+  { id: 2, username: 'user2', password: 'password2' }
+];
+
 // Middleware для парсинга тела запросов
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -32,15 +38,11 @@ passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
 // Middleware Passport
 app.use(passport.initialize());
 
-// Пример хранилища пользователей (обычно используется база данных)
-const users = [
-  { id: 1, username: 'user1', password: 'password1' },
-  { id: 2, username: 'user2', password: 'password2' }
-];
 
 // Маршрут для аутентификации пользователей и выдачи JWT
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
+  // в реальных приложениях надо сравнивать hash password
   const user = users.find(u => u.username === username && u.password === password);
 
   if (user) {
@@ -54,6 +56,8 @@ app.post('/login', (req, res) => {
 
 // Защищенный маршрут, доступный только аутентифицированным пользователям
 app.get('/profile', passport.authenticate('jwt', { session: false }), (req, res) => {
+  // Сюда пускаем.
+
   res.json({ message: `Hello, ${req.user.username}` });
 });
 

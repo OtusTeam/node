@@ -22,6 +22,7 @@ app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
     console.log(req.body);
+
     if (users[username] && users[username] === password) {
         req.session.user = username;
 
@@ -44,6 +45,8 @@ const authenticateSession = (req, res, next) => {
 
 // Защищенный маршрут
 app.get('/protected', authenticateSession, (req, res) => {
+    console.log(req.session);
+
     res.send('Hello, authenticated user!');
 });
 
