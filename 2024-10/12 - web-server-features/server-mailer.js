@@ -27,7 +27,7 @@ app.post('/send-email', (req, res) => {
         from: 'nlapshin1989@gmail.com',
         to: to,
         subject: subject,
-        text: text
+        text: text // Сделать HTML
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

@@ -2,6 +2,8 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 
+// brevo
+
 const app = express();
 
 // Настройка хранилища для multer
@@ -10,16 +12,20 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/');
     },
     filename: (req, file, cb) => {
+        console.log(file);
+
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
 // Инициализация multer
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 // Маршрут для загрузки файла
 app.post('/upload', upload.single('file'), (req, res) => {
     try {
+        console.log('req.file', req.file);
+
         res.send('File uploaded successfully');
     } catch (error) {
         res.status(400).send('Error uploading file');
