@@ -11,9 +11,7 @@
 
     <script>
         // Создаем подключение к SSE-эндпоинту
-        const eventSource = new EventSource('http://localhost:3000/events', {
-          withCredentials: false
-        });
+        const eventSource = new EventSource('http://localhost:3000/events');
 
         // Обработка сообщений от сервера
         eventSource.onmessage = (event) => {

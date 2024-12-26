@@ -21,7 +21,7 @@ app.get('/long-poll', async(req, res) => {
             return res.json({ success: true, data: dataQueue.shift() });
         }
 
-        await delay(1000);
+        await delay(1000); // 1 секунда.
     };
 });
 

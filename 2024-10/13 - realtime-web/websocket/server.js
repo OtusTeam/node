@@ -9,8 +9,16 @@ console.log('WebSocket сервер запущен на ws://localhost:8080');
 server.on('connection', (socket) => {
     console.log('Клиент подключен');
 
+    socket.on('upgrade', function upgrade(request, socket, head) {
+        socket.on('error', onSocketError);
+
+        console.log(request.headers);
+    });
+
     // Отправляем приветственное сообщение клиенту
     socket.send('Добро пожаловать на WebSocket сервер!');
+
+    // любая логика нотификацию
 
     // Обработка входящих сообщений от клиента
     socket.on('message', (message) => {
@@ -29,3 +37,4 @@ server.on('connection', (socket) => {
         console.error('Ошибка WebSocket:', error);
     });
 });
+

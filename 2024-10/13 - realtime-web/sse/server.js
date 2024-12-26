@@ -18,7 +18,7 @@ app.get('/events', (req, res) => {
     setInterval(() => {
         const message = `data: Новое сообщение в ${new Date().toISOString()}\n\n`;
         res.write(message);
-    }, 1000); // Отправка сообщений каждые 5 секунд
+    }, 5000); // Отправка сообщений каждые 5 секунд
 });
 
 app.listen(3000, () => console.log('Сервер работает на http://localhost:3000'));
