@@ -11,7 +11,7 @@ export interface IConfig {
 export class ConfigService implements IConfig {
   public env = cleanEnv(process.env, {
     NODE_ENV: str({ default: 'development' }),
-    MONGO_URL: str({ default: 'mongodb://0.0.0.0:27017' }),
+    MONGO_URL: str({ default: 'mongodb://0.0.0.0:27018' }),
   });
 
   public db = {

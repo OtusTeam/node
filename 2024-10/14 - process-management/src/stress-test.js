@@ -6,14 +6,14 @@ startBench()
 
 function startBench () {
   const instance = autocannon({
-    url: 'http://localhost:3000',
+    url: 'http://localhost:4000',
     connections: 100,
     duration: 15,
     debug: true,
     requests: [
       {
         method: 'GET',
-        path: '/heavy'
+        path: '/fast'
       }
     ]
   }, finishedBench)

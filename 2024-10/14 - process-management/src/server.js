@@ -15,11 +15,7 @@ function server() {
 
   app.get('/slow', async (req, res) => {
     console.time('slow')
-
-    const likes = concatLikes(data.users)
-
-    console.timeEnd('slow')
-
+    (anonymous)
     return res.status(200).send({ likes })
   })
 

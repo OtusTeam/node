@@ -22,11 +22,22 @@ export class AuthGuard implements CanActivate {
     console.log('this.roles', this.roles);
     console.log('request.headers.token', request.headers.token);
 
+    const isCorrectToken = request.headers.token === 'password';
+
+    if (!isCorrectToken) {
+      return false;
+    }
+
     request.user = {
-      username: 'nik'
+      username: 'nik',
+      role: Role.admin
     };
 
-    return request.headers.token === 'password';
+    if (!this.roles.includes(request.user.role)) {
+      return false;
+    }
+
+    return true;
   }
 }
 

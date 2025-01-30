@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 @Injectable()
 export class AppService {
   constructor(private mongoClient: MongoClient) {
-    console.log(this.mongoClient);
+    // console.log(this.mongoClient);
   }
   getHello(): string {
     return decorator(() => {

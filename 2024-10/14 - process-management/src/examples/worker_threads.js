@@ -1,8 +1,20 @@
 const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 
+// 1. Мы запускаем скрипт isMainThread = true
+// 2. Он запускает тот же скрипт isMainThread = false
+// 3. Разделение на осноной процесс и подпоток через флаг isMainThread
+
 console.log('isMainThread', isMainThread);
 
+
 if (isMainThread) {
+  // Main
+  mainThread()
+} else {
+  childThread();
+}
+
+function mainThread() {
   const worker = new Worker(__filename, {
     workerData: {
       value: 42
@@ -16,7 +28,9 @@ if (isMainThread) {
 
   // Можем через postMessage
   worker.postMessage('Hello, worker!');
-} else {
+}
+
+function childThread() {
   // Этот код уже относиться к потоку.
 
   console.log(`Worker data: ${workerData.value}`);
@@ -27,4 +41,6 @@ if (isMainThread) {
     // Сам слать сообщения в процесс.
     parentPort.postMessage(msg.toUpperCase());
   });
+
+  // parentPort.close();
 }

@@ -9,15 +9,42 @@ import {
   Body,
   ParseIntPipe,
   UseGuards,
+  Req
 } from '@nestjs/common';
+
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+
+import { Request } from 'express';
 
 import { AnimalDto } from './animals.dto';
 import { AnimalsService } from './animals.service';
-// import { AuthGuard } from '../auth.guard';
+import { ValidationPipe } from '../app.pipe';
+import { AuthGuard, Role } from '../auth.guard';
+
+interface CustomRequest extends Request {
+  user: any;
+}
+export const User = createParamDecorator(
+  (data: unknown, ctx: ExecutionContext): string => {
+    const request = ctx.switchToHttp().getRequest();
+    return request.user;
+  }
+);
 
 // Загадка
 // 1 сервис в два контроллера
 // Как синглтон или не как синглтон?
+
+export class NotFoundException extends HttpException {
+  constructor(namespace: string, id: number) {
+    super({
+      message: `Instance in ${namespace} with id ${id} not found`,
+      status: HttpStatus.NOT_FOUND,
+      namespace,
+      id
+    }, HttpStatus.NOT_FOUND);
+  }
+}
 
 @Controller('animals')
 export class AnimalsController {
@@ -29,17 +56,15 @@ export class AnimalsController {
   }
 
   @Get('/instance/:id')
-  async instance(@Param('id', ParseIntPipe) id: number): Promise<AnimalDto> {
+  async instance(@Param('id', ValidationPipe) id: number): Promise<AnimalDto> {
+    console.log(typeof id);
+
     const animal = await this.animalsService.instance(id);
 
-    if (animal === null) {
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Incorrect id',
-        },
-        HttpStatus.BAD_REQUEST,
-      );
+    // console.log(animal);
+
+    if (!animal) {
+      throw new NotFoundException('animals', id);
     }
 
     return animal;
@@ -52,8 +77,10 @@ export class AnimalsController {
   }
 
   @Get('/secret-route')
-  // @UseGuards(AuthGuard)
-  secretRoute() {
+  @UseGuards(new AuthGuard([Role.admin]))
+  secretRoute(@User() user: any) {
+    console.log(user);
+
     return 'secret';
   }
 }

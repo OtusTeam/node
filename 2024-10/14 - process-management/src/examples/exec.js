@@ -2,16 +2,21 @@
 
 const { exec } = require('child_process');
 
-exec('ls -lh', (error, stdout, stderr) => {
-  if (error) {
-    console.error(`exec error: ${error}`);
-    return;
-  }
+// exec('ls -lh', (error, stdout, stderr) => {
+//   if (error) {
+//     console.error(`exec error: ${error}`);
+//     return;
+//   }
+//   console.log(`stdout: ${stdout}`);
+//   console.error(`stderr: ${stderr}`);
+// });
+
+// --user_id=100
+
+exec('node ./src/script.js --user_id=100', (error, stdout, stderr) => {
   console.log(`stdout: ${stdout}`);
   console.error(`stderr: ${stderr}`);
-});
-
-exec('node ./src/heavy-task-script.js --user_id=100')
+})
 
 // Выгода в чём?
 // Простым способом запустить тяжеловестную задачу фоном.

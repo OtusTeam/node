@@ -1,9 +1,50 @@
 # FROM - это специальная команда указывает на базе какого образа создавать наш образ.
 # можно указать версию и размер образа(alpine-slim)
-FROM node:alpine
+# установили nodejs
+FROM node:alpine 
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm ci
+# node_modules
+
+COPY tsconfig.json ./
+COPY src ./src
+
+RUN npm run build
+# сбилженный код
+
+RUN npm prune
+
+CMD ["node", "./build/index.js"]
+
+
+
+
+
+
+
+# COPY package*.json ./
+# RUN npm ci
+
+
+# RUN npm run build
+
+# RUN npm prune
+
+# CMD [ "node", "./build/index.js" ]
+
+
+
+
+
+
+
 
 # Просто сложит в корень, если не укажу WORKDIR
-WORKDIR /usr/src/app
+
+
 
 # COPY ./ ./
 
@@ -11,28 +52,7 @@ WORKDIR /usr/src/app
 # 2. Явно указать, что мы копируем внутрь.
 
 # package.json package-lock.json
-COPY package*.json ./
 # Формируем папку node_modules
-RUN npm ci
-
-COPY tsconfig.json ./
-COPY src ./src
-RUN npm run build
-
-RUN npm prune
-
-CMD [ "node", "./build/index.js" ]
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -46,7 +66,7 @@ CMD [ "node", "./build/index.js" ]
 # COPY src ./src
 # RUN npm run build
 
-# Прописать команду, которая будет выполняться при старте нашего образа.
+# Прописа,ть команду, которая будет выполняться при старте нашего образа.
 # CMD [ "node", "./build/index.js" ]
 
 
