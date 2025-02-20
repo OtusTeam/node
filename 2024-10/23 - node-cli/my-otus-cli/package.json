@@ -1,17 +1,16 @@
 {
-  "name": "ex3",
+  "name": "my-otus-cli",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": {
+    "my-otus-cli": "./index.js"
+  },
   "scripts": {
+    "start": "./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@inquirer/prompts": "^6.0.1",
-    "ora": "^8.2.0",
-    "yargs": "^17.7.2"
-  }
+  "description": ""
 }

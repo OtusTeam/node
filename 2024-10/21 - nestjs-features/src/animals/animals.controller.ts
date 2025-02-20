@@ -21,19 +21,19 @@ import { AnimalsService } from './animals.service';
 import { ValidationPipe } from '../app.pipe';
 import { AuthGuard, Role } from '../auth.guard';
 
-interface CustomRequest extends Request {
-  user: any;
-}
-export const User = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext): string => {
-    const request = ctx.switchToHttp().getRequest();
-    return request.user;
-  }
-);
+// interface CustomRequest extends Request {
+//   user: any;
+// }
+// export const User = createParamDecorator(
+//   (data: unknown, ctx: ExecutionContext): string => {
+//     const request = ctx.switchToHttp().getRequest();
+//     return request.user;
+//   }
+// );
 
-// Загадка
-// 1 сервис в два контроллера
-// Как синглтон или не как синглтон?
+// // Загадка
+// // 1 сервис в два контроллера
+// // Как синглтон или не как синглтон?
 
 export class NotFoundException extends HttpException {
   constructor(namespace: string, id: number) {
@@ -75,12 +75,43 @@ export class AnimalsController {
   add(@Body() animal: AnimalDto): Promise<AnimalDto> {
     return this.animalsService.add(animal);
   }
-
-  @Get('/secret-route')
-  @UseGuards(new AuthGuard([Role.admin]))
-  secretRoute(@User() user: any) {
-    console.log(user);
-
-    return 'secret';
-  }
 }
+
+// @Controller('animals')
+// export class AnimalsController {
+//   constructor(private animalsService: AnimalsService) {}
+
+//   @Get('/list')
+//   list(): Promise<AnimalDto[]> {
+//     return this.animalsService.list();
+//   }
+
+//   @Get('/instance/:id')
+//   async instance(@Param('id', ValidationPipe) id: number): Promise<AnimalDto> {
+//     console.log(typeof id);
+
+//     const animal = await this.animalsService.instance(id);
+
+//     // console.log(animal);
+
+//     if (!animal) {
+//       throw new NotFoundException('animals', id);
+//     }
+
+//     return animal;
+//   }
+
+//   @Post('/create')
+//   @HttpCode(HttpStatus.CREATED)
+//   add(@Body() animal: AnimalDto): Promise<AnimalDto> {
+//     return this.animalsService.add(animal);
+//   }
+
+//   @Get('/secret-route')
+//   @UseGuards(new AuthGuard([Role.admin]))
+//   secretRoute(@User() user: any) {
+//     console.log(user);
+
+//     return 'secret';
+//   }
+// }

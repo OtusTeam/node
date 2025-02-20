@@ -1,20 +1,9 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-
-@Injectable()
-export class AppService {
-  constructor(
-    @Inject('MAILER_SERVICE') private readonly mailerService: ClientProxy,
-  ) {}
  
-  // Создание юзера на сервисе А
-  // commit method и rollback method
-  
-  async createUser(user: any){
-    const pattern = { cmd: 'user-create' };
-    const payload = user;
-
+// Создание юзера на сервисе А
+// commit method и rollback method
     // Второй сервис, который создает юзеров сам
     // Третий сервис, нужно положить аналитическую БД этого юзера.
 
@@ -24,7 +13,19 @@ export class AppService {
 
     // Observable - rxjs
 
+@Injectable()
+export class AppService {
+  constructor(
+    @Inject('MAILER_SERVICE') private readonly mailerService: ClientProxy,
+  ) {}
+  
+  async createUser(user: any){
+    const pattern = { cmd: 'user-create' };
+    const payload = user;
+
     console.log('service API Gateway. Handle user', user);
+
+    // Create user in database
 
     const mailRes = await lastValueFrom(this.mailerService.send<any>(pattern, payload));
 

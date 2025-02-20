@@ -22,6 +22,8 @@ app.use(bodyParser.json()); // Для обработки JSON
 app.use(bodyParser.urlencoded({ extended: true })); // Для обработки URL-encoded данных
 app.use(cookieParser()); // Для обработки cookies
 
+class CustomError extends Error {};
+
 
 app.use((req, res, next) => {
   console.log('middleware 1');
@@ -31,17 +33,22 @@ app.use((req, res, next) => {
   next();
 });
 
+// авторизация
 app.use((req, res, next) => {
   console.log('middleware 2');
+
+  // проверка авторизации уже есть
 
   req.user = { name: 'nik' };
 
   console.log('middleware 2 req.user', req.user);
 
-  next(new Error('middleware error'));
+  next();
+  // next(new CustomError('middleware error'));
 });
 
 app.get('/users/download', (req, res) => {
+  // Выполнится ли он?
   console.log('handler /users/download');
 
   res.json({ download: 'download' });
@@ -50,9 +57,10 @@ app.get('/users/download', (req, res) => {
 app.get('/users/:id', (req, res) => {
   console.log('handler /users/:id');
 
+  console.log('handler req.user', req.user)
+
   res.json({ id: req.params.id });
 });
-
 
 // Маршрут для теста парсеров Body и Cookie
 app.post('/submit', (req, res) => {
@@ -73,12 +81,12 @@ app.get('/set-cookie', (req, res) => {
 });
 
 // Маршрут для отображения HTML через шаблонизатор
-app.get('/', (req, res, next) => {
+app.get('/', async (req, res, next) => {
   try {
     console.log('handler /');
     console.log('handler / req.user', req.user);
   
-    throw new Error('test error');
+    // throw new Error('test error');
   
     res.render('index', { title: 'Express Example', message: 'Welcome to Express!' });
   } catch(err) {
@@ -102,8 +110,20 @@ app.use((req, res, next) => {
 
 // Обработка ошибок
 app.use((err, req, res, next) => {
+  if (err instanceof CustomError) {
+    return res.status(400).json({
+      status: 400,
+      msg: 'Bad request',
+      serviceMsg: err.message
+    });
+  }
+
   console.error(err.stack);
-  res.status(500).send('Что-то пошло не так!');
+  res.status(500).json({
+    status: 500,
+    msg: 'Что-то пошло не так!',
+    serviceMsg: err.message
+  });
 });
 
 // Запуск сервера

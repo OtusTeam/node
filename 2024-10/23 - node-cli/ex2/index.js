@@ -2,6 +2,7 @@
 
 const { program } = require('commander');
 const packageJSON = require('./package.json');
+
 const hello = require('./commands/hello');
 const goodbye = require('./commands/goodbye');
 
