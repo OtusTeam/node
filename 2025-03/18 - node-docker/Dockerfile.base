@@ -1,0 +1,45 @@
+FROM node:alpine
+
+# указываем рабочую директорию
+WORKDIR /app
+
+# копируем package.json в наш образ
+COPY package.json ./ 
+# копируем package-lock.json в наш образ
+COPY package-lock.json ./
+
+# запускаем инсталл зависимостей
+RUN npm install
+
+# скопировать tsconfig.json
+COPY tsconfig.json ./
+# скопировать src
+COPY src ./src
+
+# собираем проект
+RUN npm run build
+
+# CMD - это указать какая команду будет выполнятся при запуске нашего образа
+CMD ["node", "./build/index.js"]
+
+# docker build . . - это указать контекст запуска
+# docker build . --tag <tag> - собрать образ с тэгом. Тэг нужен для запуска
+# docker run <tag> - запустить контейнер по тегу
+# docker run -it my-app - запустить контейнер в интерактивном режиме
+# docker stop <id or name> - остановить контейнер
+# docker rm <id or name> - уничтожить контейнер
+# docker exec -it <id or name> sh - подключиться к терминалу контейнера
+# docker run -it --name my-app-1 -p 4000:4000 my-app - пробросить порт.
+# Слева порт хоста, справа контейнера
+# docker ps - список всех запущенных контейнеров.
+# docker image ls - список образов.
+
+
+
+# 1. Убедиться что в среде запуска будет nodejs.
+# 2. npm install - устанавливаем.
+# 3. npm run build - собираем проект(если необходимо)
+# 4. Указываем команду для запуска нашего образа.
+
+# my-app                                      latest      e0374c7f8f6b   4 minutes ago    1.08GB
+# my-app-1.0.0                                latest      ef1cd2f779e4   48 seconds ago   255MB

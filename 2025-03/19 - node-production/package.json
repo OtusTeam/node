@@ -1,0 +1,25 @@
+{
+  "name": "prod",
+  "version": "1.0.0",
+  "description": "Node.js in production",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.js",
+    "start:pm2": "pm2 start ecosystem.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlapshin/node-prod.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nlapshin/node-prod/issues"
+  },
+  "homepage": "https://github.com/nlapshin/node-prod#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "ioredis": "^5.0.3"
+  }
+}
