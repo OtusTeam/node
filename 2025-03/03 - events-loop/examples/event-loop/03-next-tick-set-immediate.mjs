@@ -13,4 +13,3 @@ const start = () => {
   process.nextTick(() => console.log('5'));
 };
 start();
-\

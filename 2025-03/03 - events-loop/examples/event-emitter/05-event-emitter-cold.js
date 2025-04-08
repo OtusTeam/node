@@ -7,6 +7,7 @@ class ColdEmitter extends EventEmitter {
         this.isListenerAttached = false;
     }
 
+    // сработать до первого подписавшегося
     emit(event, ...args) {
         if (this.isListenerAttached) {
             super.emit(event, ...args);

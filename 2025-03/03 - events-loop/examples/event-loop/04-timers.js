@@ -10,6 +10,7 @@ const timeout = setTimeout(function fun() {
 
 timer();
 
+// без refrehs
 function timer() {
   setTimeout(function fun() {
     // Может занимать ms
