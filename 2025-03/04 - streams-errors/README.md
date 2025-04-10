@@ -79,4 +79,9 @@ DDD - domain driven development
 // 
 
 
-// stdin, stdout, stderr
+/*a*/ ReferenceError: undefinedVariable is not defined  
+/*b*/ EvalError: error  
+/*c*/ URIError: URI malformed  
+/*d*/ SyntaxError: Unexpected identifier  
+/*e*/ TypeError: Cannot read properties of undefined (reading 'not')  
+/*f*/ RangeError: Invalid array length  
