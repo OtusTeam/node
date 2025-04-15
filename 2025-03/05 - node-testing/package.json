@@ -1,5 +1,5 @@
 {
-  "name": "bdd-example",
+  "name": "tdd-example",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,6 @@
   "homepage": "https://github.com/nlapshin/bdd-example#readme",
   "description": "",
   "devDependencies": {
-    "jest": "^27.5.1"
+    "jest": "^29.7.0"
   }
 }

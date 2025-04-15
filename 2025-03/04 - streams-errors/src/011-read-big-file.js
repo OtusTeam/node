@@ -1,7 +1,6 @@
 const fs = require('fs')
-const { Transform, pipeline } = require('stream')
-const { promisify } = require('util')
-const pipe = promisify(pipeline)
+const { Transform } = require('stream')
+const { pipeline } = require('stream/promises');
 
 const toUpper = new Transform({
   transform(chunk, _, callback) {
@@ -12,7 +11,7 @@ const toUpper = new Transform({
 
 async function run() {
   try {
-    await pipe(
+    await pipeline(
       fs.createReadStream('./big.txt'),
       toUpper,
       fs.createWriteStream('./result.txt')

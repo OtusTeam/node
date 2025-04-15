@@ -1,5 +1,5 @@
 
-a();
+// a();
 
 function a() {
   return b()
@@ -36,3 +36,5 @@ function delay() {
     setTimeout(res, 1000)
   })
 }
+
+// eslint - добавьте правило в линтер

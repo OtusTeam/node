@@ -18,7 +18,7 @@ class MyIterator {
 }
 
 // Использование итератора
-const myIter = new MyIterator();
+const myIter = new MyIterator([1,2,3,4,5]);
 for (let num of myIter) {
   console.log(num);
 }

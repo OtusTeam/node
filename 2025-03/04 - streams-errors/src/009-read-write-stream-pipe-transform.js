@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { Transform } = require("stream");
+const fs = require('node:fs');
+const { Transform } = require("node:stream");
 
 ;(async () => {
   const readStream = fs.createReadStream(__dirname + '/data/input-string', { encoding: 'utf8' })

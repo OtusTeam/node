@@ -1,6 +1,8 @@
 function* myGenerator() {
   for (let i = 1; i <= 5; i++) {
-      yield i;
+      console.log('before', i);
+      yield i * 2;
+      console.log('after', i);
   }
 }
 

@@ -6,11 +6,14 @@ const fs = require('fs');
 
   for await (const chunk of readStream) {
     // write писать в стрим
-    writeStream.write(chunk)
+    const res = writeStream.write(chunk);
+
+    console.log(res);
   }
 
   // закрыть стрим
-  writeStream.end('100\n')
+  // 
+  writeStream.end('10000\n')
 })()
 
 // Readable stream - на чтения

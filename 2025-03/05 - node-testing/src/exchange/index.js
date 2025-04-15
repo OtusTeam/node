@@ -9,10 +9,12 @@ module.exports = class Exchange {
   }
 
   async getData() {
+    // Вызывает API запрос
     const list = await this.fetchData()
 
+    // Преобразует запрос
     return list.map(item => {
-      item.Diff = +(item.Value - item.Previous).toFixed(4)
+      item.Diff = +(item.Value - item.Previous).toFixed(2)
 
       return item
     })
@@ -24,6 +26,6 @@ module.exports = class Exchange {
 // Добиться code coverage 95%.
 // Можно использовать пакет для моков файловой системы.
 
-255 -> 11111111
-254 -> 11111110
-252 -> 11111100
+// 255 -> 11111111
+// 254 -> 11111110
+// 252 -> 11111100

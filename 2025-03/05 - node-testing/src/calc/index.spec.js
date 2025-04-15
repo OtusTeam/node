@@ -7,6 +7,28 @@ const calc = require('./');
 // beforeEach
 // afterEach
 
+// Как я делаю, чтобы защитися от случайных кредов с продакшена
+
+// Я не использую переменные окружения внутри класса.
+/*
+class Database {
+  constructor(options) {
+
+  }
+
+  // dropCollection() {
+    // Добавить явную проверку, что это e2e среда.
+  }
+}
+
+class DatabaseE2E extends Database {
+  constructor() {
+    super({
+      // креды явно прописываю для e2e среды.
+    })
+  }
+}
+*/
 
 describe('calc.sum', () => {
   beforeEach(() => {
@@ -21,7 +43,7 @@ describe('calc.sum', () => {
   //     console.log('before Each calc.sum');
   // })
   // Это должно суммировать два целочисленных числа
-  test('it should sum two integer number', () => {
+  test.skip('it should sum two integer number', () => {
     // arrange-act-assert;
 
     // arrange
@@ -37,6 +59,12 @@ describe('calc.sum', () => {
 })
 
 describe('calc.sub', () => {
+  // Хуки, которые запускаются до тестов и после тестов.
+  // before - один раз до всех тестов
+  // after - один раз после тестов.
+  // beforeEach - каждый раз до каждого теста
+  // afterEach- каждый раз после каждого теста
+
   // Это должно суммировать два целочисленных числа
   test('it should sub two integer number', () => {
     // arrange-act-assert;
@@ -50,7 +78,21 @@ describe('calc.sub', () => {
 
     // assert(expect)
     expect(result).toBe(1);
-  })
+  });
+
+  test('it should sub two integer number', () => {
+    // arrange-act-assert;
+
+    // arrange
+    const a = 1
+    const b = 2
+
+    // act
+    const result = calc.sub(a, b)
+
+    // assert(expect)
+    expect(result).toBe(-1);
+  });
 })
 
 describe('calc.multi', () => {

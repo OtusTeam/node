@@ -2,7 +2,16 @@ const { createHash } = require('crypto');
 const { MongoClient } = require('mongodb')
 const { Transform, Writable } = require('stream');
 const { pipeline } = require('stream/promises');
-// const { setTimeout: setTimeoutAsync } = require('timers/promises');
+const { setTimeout: setTimeoutAsync } = require('timers/promises');
+
+// Читаем стимом из коллекции -> 
+// программно анонимизируем -> 
+// батч записываем в новую коллекцию
+
+// У нас есть юзеры с персональными данными
+// мы хотим создать новую коллекцию, где данные будут анонимизированны.
+// вычитывать данные в потоке - накапливать батчами 100 штук или 
+// записывать их по достижению таймаута 1000 мс
 
 const MONGO_URI = 'mongodb://localhost:27017'
 const DB_NAME = 'app'
@@ -22,12 +31,14 @@ async function createMongoPipeline() {
 
   await target.deleteMany({});
 
+  // Readable stream
   const readable = source.find({}).stream()
 
+  // анонимные юзеры
   const transformer = new Transform({
     objectMode: true,
     async transform(doc, _, cb) {
-        // await setTimeoutAsync(100);
+        await setTimeoutAsync(100);
 
         const anonCustomer = anonymiseCustomer(doc);
 
@@ -82,7 +93,11 @@ async function createMongoPipeline() {
   })()
 
   try {
-    await pipeline(readable, transformer, writer)
+    await pipeline(
+      readable, 
+      transformer, 
+      writer
+    )
     console.log('🎉 ETL pipeline completed')
   } catch (err) {
     console.error('❌ Pipeline failed:', err)

@@ -18,7 +18,7 @@ class NotValidationError extends Error {
 
 ;(async() => {
   try {
-    throw new ValidationError('val err')
+    throw new Error('val err')
   } catch(err) {
     console.log('instanceof Error', err instanceof Error) // true
     console.log('instanceof ValidationError', err instanceof ValidationError) // true

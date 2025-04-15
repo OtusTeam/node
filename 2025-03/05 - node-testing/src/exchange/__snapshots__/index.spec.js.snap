@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`exchange.getData it should return list of exchange with Diff field 1`] = `
-Array [
-  Object {
+[
+  {
     "CharCode": "AUD",
-    "Diff": -1.9134,
+    "Diff": -1.91,
     "ID": "R01010",
     "Name": "Австралийский доллар",
     "Nominal": 1,
@@ -12,9 +12,9 @@ Array [
     "Previous": 55.8293,
     "Value": 53.9159,
   },
-  Object {
+  {
     "CharCode": "AZN",
-    "Diff": 1.1211,
+    "Diff": 1.12,
     "ID": "R01020A",
     "Name": "Азербайджанский манат",
     "Nominal": 1,

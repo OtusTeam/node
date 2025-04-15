@@ -11,17 +11,19 @@ const timer = setTimeout(() => {
 
 ;(async() => {
     console.time('sum');
+    // const res = sumRecursive(bigArray);
     const res = await sumFlat(bigArray);
     console.timeEnd('sum');
 
     console.log(res);
 })();
 
-function sumRecursive(arr, index = 0) {
-    if (index >= arr.length) return 0
-    return arr[index] + sumRecursive(arr, index + 1)
-}
+// function sumRecursive(arr, index = 0) {
+//     if (index >= arr.length) return 0;
+//     return arr[index] + sumRecursive(arr, index + 1);
+// }
 
+// Длинная синхронная функция, на множество коротки.
 async function sumFlat(arr, index = 0) {
     let total = 0;
     const chunkSize = 1000;

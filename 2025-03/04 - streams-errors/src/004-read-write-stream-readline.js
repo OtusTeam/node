@@ -14,6 +14,8 @@ const readline = require('readline');
 
     const multiTwo = parseInt(chunk.trim()) * 2;
 
+    console.log(multiTwo);
+
     writeStream.write(multiTwo + '\n')
   }
 

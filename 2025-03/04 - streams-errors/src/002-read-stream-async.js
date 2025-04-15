@@ -1,7 +1,9 @@
 const fs = require('fs');
 
 ;(async () => {
-  const readStream = fs.createReadStream(__dirname + '/data/input-number', { encoding: 'utf8' })
+  const readStream = fs.createReadStream(__dirname + '/data/input-number', { 
+    encoding: 'utf8' 
+  });
 
   let data = ''
 

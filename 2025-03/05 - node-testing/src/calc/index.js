@@ -2,9 +2,11 @@ module.exports = {
   sum(a, b) {
     return a + b
   },
+
   sub(a, b) {
     return a - b
   },
+
   multi(a, b) { // a = 2, b = 3
     validateNumber(a, 'a');
     validateNumber(b, 'b');
