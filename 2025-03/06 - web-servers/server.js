@@ -11,7 +11,7 @@ server.listen(port)
 server.on('error', onError)
 server.on('listening', onListening)
 
-console.log(`Server started on ${port} port test`); 
+console.log(`Server started on ${port} port test`)
 
 function normalizePort (val) {
   const port = parseInt(val, 10)

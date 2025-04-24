@@ -22,6 +22,17 @@ describe('User API CRUD operations', () => {
     userId = response.body.id
   })
 
+  it('should create a new user', async () => {
+    const response = await request(app)
+      .post('/api/users')
+      .send({ name: 'Nik Doe', email: 'nik@example.com' })
+
+    expect(response.status).toBe(201)
+    expect(response.body).toHaveProperty('id')
+    expect(response.body.name).toBe('Nik Doe')
+    expect(response.body.email).toBe('nik@example.com')
+  })
+
   it('should get all users', async () => {
     const response = await request(app).get('/api/users')
 
@@ -62,4 +73,6 @@ describe('User API CRUD operations', () => {
   })
 })
 
+// Доступ до узла адресу 8.8.8.8
 
+// 8.8.8.0/24 -> 8.8.8.1,8.8.8.2,8.8.8.3
