@@ -1,6 +1,9 @@
 const { spawn } = require('child_process');
 
+// ls
 const child = spawn('ls', ['-lh', './']);
+
+// Если нужно передать stdout -> console.log.
 
 child.stdout.on('data', (data) => {
   console.log(`stdout: ${data}`);

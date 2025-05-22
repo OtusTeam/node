@@ -6,7 +6,10 @@ export class UsersCtrl {
 
   public async registerUser(req: Request, res: Response) {
     try {
+        // можно добавить валидацию или преобразовани
       const user = await this.service.register(req.body);
+
+      // лучше enum
       res.status(201).json(user);
     } catch (e: any) {
       res.status(400).json({ message: e.message });
@@ -14,6 +17,7 @@ export class UsersCtrl {
   }
 
   public async getUsers(_: Request, res: Response) {
+    // query парсил и отправлял в виде объекта параметры
     const users = await this.service.getAll();
     res.json(users);
   }

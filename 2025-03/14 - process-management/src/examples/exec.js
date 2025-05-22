@@ -13,10 +13,21 @@ const { exec } = require('child_process');
 
 // --user_id=100
 
+// Как передать агрумент
+// args - коротка запись -- длинная запись
 exec('node ./src/script.js --user_id=100', (error, stdout, stderr) => {
   console.log(`stdout: ${stdout}`);
   console.error(`stderr: ${stderr}`);
 })
+
+
+
+
+
+
+
+
+
 
 // Выгода в чём?
 // Простым способом запустить тяжеловестную задачу фоном.

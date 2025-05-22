@@ -19,6 +19,7 @@ if (cluster.isMaster) {
     cluster.fork();
   });
 } else {
+  // worker пойдет по этой ветке
   // запуск самого сервер
   server(); 
 }

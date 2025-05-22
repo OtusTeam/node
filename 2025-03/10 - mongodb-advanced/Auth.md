@@ -67,3 +67,13 @@ db.createUser({
   db: "test" 
  }] 
 })
+
+
+rs.initiate({
+  "_id" : "my-replica-set", // другое значение ошибка 
+  members : [
+    {"_id" : 0, host: "mongo-rs-1:30001"}, // либо IP адрес, domain
+    {"_id" : 1, host: "mongo-rs-2:30002"},
+    {"_id" : 2, host: "mongo-rs-3:30003"}
+  ]
+})

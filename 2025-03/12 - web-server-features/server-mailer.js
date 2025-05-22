@@ -9,13 +9,11 @@ app.use(bodyParser.json());
 
 // Настройка транспорта для Nodemailer
 const transporter = nodemailer.createTransport({
-    service: "Gmail",
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    host: 'smtp.ethereal.email',
+    port: 587,
     auth: {
-        user: 'nlapshin1989@gmail.com',
-        password: ''
+        user: 'reinhold20@ethereal.email',
+        pass: 'yxdF33jvdJhvWu98SG'
     }
 });
 
@@ -29,6 +27,8 @@ app.post('/send-email', (req, res) => {
         subject: subject,
         text: text // Сделать HTML
     };
+
+    console.log(mailOptions);
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -44,3 +44,9 @@ app.listen(3000, () => {
 });
 
 // https://sendgrid.com/en-us
+
+// Page based движемся по страницам, то есть 1 страница offset 0, limit 100, вторая движемся на величину хода offset 100, limit 100
+// Курсор - это id или запись в базе данных(ссылка на неё).
+// Вы прочитал 100 записей и запомнили последнюю из списка (id, date и т.д.), 
+// когда переходите к следующей страницы стартвое значение id + следующая запись
+// На 200 записи id 100500 - и его его используем

@@ -68,24 +68,30 @@ async function groupMoviesByYears() {
   const res = await movies.collection('movies').aggregate([
     {
       $match: {
-        year: { $gte: 2000 }
+        year: { $gte: 2000 },
+        countries: 'Russia'
       }
     },
     {
       $group: {
+        // _id - мы указываем поле или группу полей для группирования
         _id: '$year', // Поля уникальный, по которым делается группирования
         
-        total: { $sum: 1 }, // Добавлять +1
-
-        // movies: { $push: '$title'},
+        // как и что группируется
+        // SUM - будет аналогичен count
+        count: { $sum: 1 }, // Добавлять +1
 
         // Average
         avgImdbRating: { $avg: '$imdb.rating' },
+        // Min
         minImdbRating: { $min: '$imdb.rating' },
-        maxImdbRating: { $max: '$imdb.rating' }
+        // Max
+        maxImdbRating: { $max: '$imdb.rating' },
+
+        movies: { $addToSet: '$title'},
       }
     },
-    {
+    { // having
       $match: {
         avgImdbRating: { $gte: 6.6 }
       }
@@ -108,6 +114,9 @@ async function groupMoviesByYears() {
   ]).toArray();
 
 
+  console.log(res);
+
+
   //   // Все фильмы в виде массива строк.
   //   // movies: { $push: '$title'}, // Добавить в массив значение
   // // Фильтрация данных, аналог WHERE
@@ -122,9 +131,6 @@ async function groupMoviesByYears() {
   //     _id: 1
   //   }
   // } // ORDER BY
-
-
-  console.log(res);
 }
 
 async function groupUnwindMovies() {
@@ -132,6 +138,11 @@ async function groupUnwindMovies() {
 
   // https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/
   const res = await movies.collection('movies').aggregate([
+    // {
+    //   $match: {
+    //     title: 'The Passion of Joan of Arc'
+    //   }
+    // },
     {
       $unwind: '$countries'
     },
@@ -140,13 +151,23 @@ async function groupUnwindMovies() {
     },
     {
       $group: {
-        _id: { $concat: ['$countries', '___', '$genres'] }, // массив строк
+        _id: {
+          countries: '$countries',
+          genres: '$genres'
+        }, // массив строк
         total: { $sum: 1 },
       }
     },
     {
+      $set: {
+        countries: '$_id.countries',
+        genres: '$_id.genres',
+      }
+    },
+    {
       $sort: {
-        _id: -1
+        countries: -1,
+        genres: -1,
       }
     }
   ]).toArray();

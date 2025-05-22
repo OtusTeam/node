@@ -26,7 +26,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "lodash.range": "^3.2.0",
-    "piscina": "^4.0.0"
+    "piscina": "^4.9.2"
   },
   "devDependencies": {
     "autocannon": "^7.11.0",

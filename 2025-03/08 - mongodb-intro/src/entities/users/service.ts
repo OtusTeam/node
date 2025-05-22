@@ -1,6 +1,8 @@
 import { UserRepository } from './repository.js';
 import { User } from './model.js';
 
+// Может CLI/микросервис gRPC/ GraphQL все что угодно
+
 export class UserService {
   private repository = new UserRepository();
 

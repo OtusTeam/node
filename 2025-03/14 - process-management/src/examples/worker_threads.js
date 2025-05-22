@@ -1,3 +1,4 @@
+// Скрипт и мы запускаем его же, но в режиме child thread
 const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 
 // 1. Мы запускаем скрипт isMainThread = true
@@ -16,6 +17,7 @@ if (isMainThread) {
 
 function mainThread() {
   const worker = new Worker(__filename, {
+    // как передать данные в поток.
     workerData: {
       value: 42
     }
@@ -23,7 +25,7 @@ function mainThread() {
 
   // Подписываемся на сообщения от потока.
   worker.on('message', (msg) => {
-    console.log(`Message from worker: ${msg}`);
+    console.log(`Main Thread: Message from worker: ${msg}`);
   });
 
   // Можем через postMessage
@@ -32,12 +34,11 @@ function mainThread() {
 
 function childThread() {
   // Этот код уже относиться к потоку.
-
-  console.log(`Worker data: ${workerData.value}`);
+  console.log(`Child Thread: Worker data: ${workerData.value}`);
 
   // Подписывается на сообщения
   parentPort.on('message', (msg) => {
-    console.log(`Message from main thread: ${msg}`);
+    console.log(`Child Thread: Message from main thread: ${msg}`);
     // Сам слать сообщения в процесс.
     parentPort.postMessage(msg.toUpperCase());
   });
