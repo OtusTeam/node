@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Node modules",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/nlapshin/node-modules#readme",
   "dependencies": {
     "express": "^3.21.2",
-    "got": "^12.5.3",
+    "got": "^14.4.7",
     "madge": "^7.0.0",
     "minimist": "^1.2.5",
     "mkdirp": "^1.0.4",

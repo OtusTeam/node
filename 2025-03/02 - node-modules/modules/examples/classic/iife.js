@@ -15,6 +15,8 @@ const myModule = (function(dep1, dep2) {
   }
 })('dep1', 'dep2'); // Создает функцию и вызывает её "на месте" 
 
+// Способы создания объекта
+
 console.log(myModule);
 
 myModule.publicMethod();

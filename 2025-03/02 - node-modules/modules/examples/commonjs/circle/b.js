@@ -1,3 +1,4 @@
+
 // const shared = require('./shared');
 
 
@@ -5,10 +6,11 @@
 
 
 module.exports = {
-  bModule() {
-    // const a = require('./a');
-    // console.log(a.aModule());
-    // console.log('module a in file b', a);
+  method() {
+    const a = require('./a');
+
+    console.log(a.method2());
+    console.log('module a in file b', a);
 
     console.log('b');
   }

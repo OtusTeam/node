@@ -1,10 +1,17 @@
-// const got = require('got');
+// const got = require('got'); // пакет got
 
-;(async() => {
-  const got = await import('got');
+// console.log(got);
 
-  console.log(got);
-})();
+// // const got = require('got');
+
+// ;(async() => {
+//   const got = await import('got');
+
+//   console.log(got);
+// })();
+
+
+
 
 // express 
 // const express = require('express');

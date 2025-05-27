@@ -1,3 +1,3 @@
 const a = require('./a');
 
-a.aModule();
+a.method();

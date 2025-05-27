@@ -1,3 +1,5 @@
+export const age = 35;
+
 export default {
   name: 'nik1',
   show() {

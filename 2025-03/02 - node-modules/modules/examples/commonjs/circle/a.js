@@ -8,12 +8,15 @@ const b = require('./b');
 // console.log('module b in file a', shared);
 
 module.exports = {
-  aModule() {
+  method() {
     console.log('a');
 
-    b.bModule();
+    b.method();
 
     // shared.shared();
+  },
+  method2() {
+    console.log('a2')
   },
   async fn() {
     return await asyncFn();

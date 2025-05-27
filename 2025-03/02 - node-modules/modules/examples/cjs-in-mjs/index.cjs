@@ -1,7 +1,7 @@
 // index.cjs
 'use strict';
 
-const got = require('got');
+// const got = require('got');
 
 // ;(async() => {
 //     const got = await import('got');
@@ -9,11 +9,11 @@ const got = require('got');
 //     console.log(got);
 // })();
 
-console.log(got);
+// console.log(got);
 
-// module.exports = {
-//     test: 'test'
-// };
+module.exports = {
+    test: 'test'
+};
 
 
 // В NodeJS 20 не работает или через import
