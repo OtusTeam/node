@@ -5,11 +5,13 @@ const router = Router();
 router.get('/hello/:name', (req: Request, res: Response, next: NextFunction) => {
     const { name } = req.params;
 
-    res.send(`Hello OTUS ${name} from express version 1.0.2`);
+    res.send(`Hello OTUS ${name} from express version 1.0.3`);
   },
 );
 
 export default router;
+
+// Надо сделать образ.
 
 
 

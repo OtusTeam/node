@@ -18,10 +18,14 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // Middlewares
+
+// bodyParser.json() -> return функция middleware
+
 app.use(bodyParser.json()); // Для обработки JSON
 app.use(bodyParser.urlencoded({ extended: true })); // Для обработки URL-encoded данных
 app.use(cookieParser()); // Для обработки cookies
 
+// Ошибку свою от не своей.
 class CustomError extends Error {};
 
 
@@ -43,8 +47,11 @@ app.use((req, res, next) => {
 
   console.log('middleware 2 req.user', req.user);
 
+  if (req.user.name !== 'nik') {
+    next(new CustomError('middleware error'));
+  }
+
   next();
-  // next(new CustomError('middleware error'));
 });
 
 app.get('/users/download', (req, res) => {
@@ -85,8 +92,10 @@ app.get('/', async (req, res, next) => {
   try {
     console.log('handler /');
     console.log('handler / req.user', req.user);
+
+    // asdfsfasdff + gggg;
   
-    // throw new Error('test error');
+    throw new Error('test error');
   
     res.render('index', { title: 'Express Example', message: 'Welcome to Express!' });
   } catch(err) {
@@ -110,6 +119,8 @@ app.use((req, res, next) => {
 
 // Обработка ошибок
 app.use((err, req, res, next) => {
+  // error first approach(подход)
+  // Если нет ошибки, то err = null
   if (err instanceof CustomError) {
     return res.status(400).json({
       status: 400,

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:
+    nodejs-simple-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: web-server
+  template:
+    metadata:
+      labels:
+        component: web-server
+    spec:
+      containers:
+      - name: web-server
+        image: nlapshin/nodejs-simple-k8s
+        ports:
+          - containerPort: 4000

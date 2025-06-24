@@ -10,3 +10,5 @@ module.exports = function(program) {
       return Promise.resolve();
     });
 }
+
+// могу подфайлы создавать, допустим, работу с базой данных и т.д.

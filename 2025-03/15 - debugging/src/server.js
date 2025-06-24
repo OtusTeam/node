@@ -1,6 +1,6 @@
 import express from 'express'
 import process from 'process'
-import randomInt from 'random-int'
+import { randomInt } from 'crypto'
 
 import mem from './mem.js'
 import data from './data.js'
@@ -17,6 +17,7 @@ app.get('/slow', (req, res) => {
   console.time('slow')
 
   const likes = concatLikes(data.users)
+  console.log(likes);
 
   console.timeEnd('slow')
 
@@ -48,7 +49,7 @@ app.listen(PORT, (err) => {
 
 function concatLikes(users) {
   return users.reduce((res, user) => {
-    res = res.concat(user.like)
+    res.push(user.like) // concat медленее push, потому что создает новый массив.
     
     return res
   }, [])
@@ -60,7 +61,7 @@ async function slowRequest() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({ success: true, asyncDelay });
-    }, delay)
+    }, asyncDelay)
   });
 }
 const syncWait = ms => {

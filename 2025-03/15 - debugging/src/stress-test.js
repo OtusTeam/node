@@ -6,12 +6,12 @@ function startBench () {
   const instance = autocannon({
     url: 'http://localhost:4000',
     connections: 100,
-    duration: 10,
+    duration: 5,
     debug: true,
     requests: [
       {
         method: 'GET',
-        path: '/slow'
+        path: '/slow-async'
       }
     ]
   }, finishedBench)

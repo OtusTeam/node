@@ -1,18 +1,10 @@
 # Образ на основании которого делаем наш образ
-FROM node:alpine 
+FROM node
 
-WORKDIR /usr/src/app
+COPY ./ ./
 
-COPY package*.json ./
-RUN npm ci
-# Получаем node_modules + package.json файлы
-
-COPY tsconfig.json ./
-COPY src ./src
-
+RUN npm install
 RUN npm run build
-
-RUN npm prune
 
 CMD ["node", "./build/index.js"]
 

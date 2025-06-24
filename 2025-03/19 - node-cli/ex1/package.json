@@ -6,8 +6,9 @@
   "bin": {
     "my-nik-cli": "./index.js"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "yargs": "^18.0.0"
+  },
   "scripts": {},
   "author": "",
   "license": "ISC"
