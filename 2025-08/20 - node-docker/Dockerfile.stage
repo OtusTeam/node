@@ -1,0 +1,27 @@
+FROM node:alpine as build-stage
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY tsconfig.json ./
+COPY src ./src
+
+RUN npm run build
+
+RUN npm prune
+# Готовим папку node_modules - при запуске devDeps не нужны и build.
+
+FROM node:alpine as run-stage
+
+WORKDIR /usr/src/app
+
+RUN chown node:node ./
+
+COPY --chown=node:node --from=build-stage /usr/src/app/node_modules ./node_modules
+COPY --chown=node:node --from=build-stage /usr/src/app/build ./build
+
+USER node
+
+CMD [ "node", "./build/index.js" ]
