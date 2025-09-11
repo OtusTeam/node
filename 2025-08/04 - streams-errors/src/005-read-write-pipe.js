@@ -6,5 +6,8 @@ const fs = require('fs');
  
   // Перенаправить стрим
   // pipe и можем их делать несколько
+  // выход readStream -> на вход writeStream
   readStream.pipe(writeStream)
 })()
+
+// .on('data) + pipe - это что было из корбки

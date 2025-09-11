@@ -38,7 +38,7 @@ async function createMongoPipeline() {
   const transformer = new Transform({
     objectMode: true,
     async transform(doc, _, cb) {
-        await setTimeoutAsync(100);
+        //await setTimeoutAsync(100);
 
         const anonCustomer = anonymiseCustomer(doc);
 

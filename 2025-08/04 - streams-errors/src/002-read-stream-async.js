@@ -7,8 +7,16 @@ const fs = require('fs');
 
   let data = ''
 
+  // Видели такую конструкцию
+  // асинхроннм итераторы
   for await (const chunk of readStream) {
     data += chunk
+  }
+
+  const arr = [1, 2, 3];
+
+  for (const val of arr) {
+    console.log(val);
   }
 
   console.log(data)

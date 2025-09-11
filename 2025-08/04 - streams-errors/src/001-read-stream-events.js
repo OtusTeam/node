@@ -1,10 +1,4 @@
-const fs = require('node:fs');
-
-// Накапливаем массив данных по 1000
-// Как накопили, записали в бд
-// И буфер отчили.
-
-// fs.createReadStream
+const fs = require('node:fs'); // работа с файловой системой
 
 // Создай стрим на этот файл
 const readStream = fs.createReadStream(__dirname + '/data/input-number')
@@ -16,28 +10,39 @@ let data = ''
 readStream.setEncoding('UTF8')
 
 // Подписка на поток данных
-readStream.on('data', function(chunk) {
+readStream.on('data', (chunk) => {
   console.log('chunk', chunk);
-  // Получение данные чанком.
 
   data += chunk; // Просто в переменную
-
-  // writable.write(chuck);
-  // сделать запрос в бд
-  // перенаправить в другой поток.
 });
 
 // Когда все закончит
-readStream.on('end', function() {
+readStream.on('end', () => {
   console.log('end', data);
 });
 
 // Если случилась ошибка
-readStream.on('error', function(err) {
+readStream.on('error', (err) => {
   console.log(err.stack);
 });
 
 console.log("Program Ended");
+
+
+
+
+// Накапливаем массив данных по 1000
+// Как накопили, записали в бд
+// И буфер отчили.
+
+  // Получение данные чанком.
+
+// fs.createReadStream
+
+
+  // writable.write(chuck);
+  // сделать запрос в бд
+  // перенаправить в другой поток.
 
 // Поставим задачу вычитать данные файл
 // Зашифровать
