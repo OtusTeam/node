@@ -1,7 +1,7 @@
 class MyIterator {
-  constructor() {
-      this.current = 1;
-      this.max = 5;
+  constructor(current = 1, max = 5) {
+      this.current = current;
+      this.max = max;
   }
 
   next() {
@@ -18,7 +18,8 @@ class MyIterator {
 }
 
 // Использование итератора
-const myIter = new MyIterator([1,2,3,4,5]);
+// [1,2,3,4,5]
+const myIter = new MyIterator(1, 10);
 for (let num of myIter) {
   console.log(num);
 }

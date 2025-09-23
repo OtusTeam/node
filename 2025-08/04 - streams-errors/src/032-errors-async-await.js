@@ -1,17 +1,17 @@
 
 // a();
 
-function a() {
-  return b()
-}
+// function a() {
+//   return b()
+// }
 
-function b() {
-  return c()
-}
+// function b() {
+//   return c()
+// }
 
-function c() {
-  throw new Error('error c')
-}
+// function c() {
+//   throw new Error('error c')
+// }
 
 ;(async() => {
   await aAsync();

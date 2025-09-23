@@ -12,6 +12,13 @@ module.exports = {
     validateNumber(b, 'b');
 
     return a * b; // Как самый простой способ сделать тест зеленым?
+  },
+
+  devide(a, b) {
+    validateNumber(a, 'a');
+    validateNumber(b, 'b');
+
+    return a / b; // stub реализации, написать реальную
   }
 }
 

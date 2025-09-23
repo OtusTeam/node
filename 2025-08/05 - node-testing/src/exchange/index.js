@@ -1,6 +1,11 @@
 
 // На два, один для API другой для бизнес логики.
+
+// fetchData - это API Repository
+// getData - Presentator.
+
 module.exports = class Exchange {
+  // Это в отдельный модуль.
   async fetchData() {
     const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js')
     const data = await res.json()
@@ -14,7 +19,8 @@ module.exports = class Exchange {
 
     // Преобразует запрос
     return list.map(item => {
-      item.Diff = +(item.Value - item.Previous).toFixed(2)
+      // Посчитать разницу между текущим курсом и предыдущим.
+      item.Diff = +(item.Value - item.Previous).toFixed(4)
 
       return item
     })

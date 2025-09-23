@@ -1,6 +1,6 @@
 let range = {
-  from: 1,
-  to: 5,
+  from: 1, // 2025-08-01
+  to: 5, // 2025-09-10
 
   // Добавить служебные поля в объекты.
   // Любое название js объект
@@ -36,6 +36,6 @@ let range = {
 
   for await (let value of range) { // (4)
     console.log(value); // 1,2,3,4,5
-  }alert
+  }
 
 })()

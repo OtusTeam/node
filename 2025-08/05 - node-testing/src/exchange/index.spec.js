@@ -17,20 +17,22 @@ describe('exchange.getData', () => {
           "Previous": 55.8293
         },
         {
-            "ID": "R01020A",
-            "NumCode": "944",
-            "CharCode": "AZN",
-            "Nominal": 1,
-            "Name": "Азербайджанский манат",
-            "Value": 43.2382,
-            "Previous": 42.1171
-        }
+          "ID": "R01020A",
+          "NumCode": "944",
+          "CharCode": "AZN",
+          "Nominal": 1,
+          "Name": "Азербайджанский манат",
+          "Value": 43.2382,
+          "Previous": 42.1171
+        } // Заполнять их рандомом.
       ])
     });
 
     const result = await exchange.getData();
 
     // Тестируем функции
+
+    console.log(result)
 
     expect(result).toMatchSnapshot();
   })
