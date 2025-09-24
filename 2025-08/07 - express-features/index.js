@@ -48,6 +48,7 @@ app.use((req, res, next) => {
   console.log('middleware 2 req.user', req.user);
 
   if (req.user.name !== 'nik') {
+    // Не ответ отдать сервису, а выбросить ошибку.
     next(new CustomError('middleware error'));
   }
 
@@ -87,6 +88,8 @@ app.get('/set-cookie', (req, res) => {
   res.send('Cookie установлена!');
 });
 
+// async 
+// 
 // Маршрут для отображения HTML через шаблонизатор
 app.get('/', async (req, res, next) => {
   try {
@@ -95,7 +98,7 @@ app.get('/', async (req, res, next) => {
 
     // asdfsfasdff + gggg;
   
-    throw new Error('test error');
+    // throw new Error('test error');
   
     res.render('index', { title: 'Express Example', message: 'Welcome to Express!' });
   } catch(err) {
@@ -121,6 +124,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // error first approach(подход)
   // Если нет ошибки, то err = null
+  // Наследование через прототипы err и CustomError и Error
   if (err instanceof CustomError) {
     return res.status(400).json({
       status: 400,
