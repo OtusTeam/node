@@ -5,7 +5,7 @@ use admin
 -- Создаем root админа
 db.createUser({ 
  user: "root", 
- pwd: "strictRootPassword",
+ pwd: "'strictRootPassword'",
  roles: [
   { role: "root", db: "admin" }
  ] 

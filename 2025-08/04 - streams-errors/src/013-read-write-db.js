@@ -13,6 +13,9 @@ const { setTimeout: setTimeoutAsync } = require('timers/promises');
 // вычитывать данные в потоке - накапливать батчами 100 штук или 
 // записывать их по достижению таймаута 1000 мс
 
+// Простое группирование - find mongodb
+// MongoDB коллекции - сделать объединение find.
+
 const MONGO_URI = 'mongodb://localhost:27017'
 const DB_NAME = 'app'
 const SOURCE_COLLECTION = 'customers'

@@ -9,6 +9,13 @@ router.get('/hello/:name', (req: Request, res: Response, next: NextFunction) => 
   },
 );
 
+router.get('/goodbuy/:name', (req: Request, res: Response, next: NextFunction) => {
+    const { name } = req.params;
+
+    res.send(`Goodbuy OTUS ${name} from express version 1.0.4`);
+  },
+);
+
 export default router;
 
 

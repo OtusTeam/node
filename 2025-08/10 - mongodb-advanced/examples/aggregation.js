@@ -55,7 +55,7 @@ const { start } = require('./clients');
 
 // lookupUserComments();
 // lookupMoviesComments();
-lookupMoviesFilterComments();
+// lookupMoviesFilterComments();
 
 // outMovies();
 
@@ -88,7 +88,7 @@ async function groupMoviesByYears() {
         // Max
         maxImdbRating: { $max: '$imdb.rating' },
 
-        movies: { $addToSet: '$title'},
+        // movies: { $addToSet: '$title'},
       }
     },
     { // having
@@ -112,6 +112,54 @@ async function groupMoviesByYears() {
       }
     }
   ]).toArray();
+
+  // const res = await movies.collection('movies').aggregate([
+  //   {
+  //     $match: {
+  //       year: { $gte: 2000 },
+  //       countries: 'Russia'
+  //     }
+  //   },
+  //   {
+  //     $group: {
+  //       // _id - мы указываем поле или группу полей для группирования
+  //       _id: '$year', // Поля уникальный, по которым делается группирования
+        
+  //       // как и что группируется
+  //       // SUM - будет аналогичен count
+  //       count: { $sum: 1 }, // Добавлять +1
+
+  //       // Average
+  //       avgImdbRating: { $avg: '$imdb.rating' },
+  //       // Min
+  //       minImdbRating: { $min: '$imdb.rating' },
+  //       // Max
+  //       maxImdbRating: { $max: '$imdb.rating' },
+
+  //       movies: { $addToSet: '$title'},
+  //     }
+  //   },
+  //   { // having
+  //     $match: {
+  //       avgImdbRating: { $gte: 6.6 }
+  //     }
+  //   },
+  //   {
+  //     $set: {
+  //       year: '$_id'
+  //     }
+  //   },
+  //   {
+  //     $sort: {
+  //       year: 1
+  //     }
+  //   },
+  //   {
+  //     $project: {
+  //       _id: 0
+  //     }
+  //   }
+  // ]).toArray();
 
 
   console.log(res);
@@ -160,14 +208,14 @@ async function groupUnwindMovies() {
     },
     {
       $set: {
-        countries: '$_id.countries',
-        genres: '$_id.genres',
+        country: '$_id.countries',
+        genre: '$_id.genres',
       }
     },
     {
       $sort: {
-        countries: -1,
-        genres: -1,
+        country: 1,
+        genre: 1,
       }
     }
   ]).toArray();
