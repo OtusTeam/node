@@ -10,7 +10,7 @@ console.log('isMainThread', isMainThread);
 
 if (isMainThread) {
   // Main
-  mainThread()
+  mainThread();
 } else {
   childThread();
 }
@@ -34,9 +34,10 @@ function mainThread() {
 
 function childThread() {
   // Этот код уже относиться к потоку.
-  console.log(`Child Thread: Worker data: ${workerData.value}`);
+  console.log(`Child Thread: Worker data:`, workerData);
 
   // Подписывается на сообщения
+  // Слушаем сообщения
   parentPort.on('message', (msg) => {
     console.log(`Child Thread: Message from main thread: ${msg}`);
     // Сам слать сообщения в процесс.

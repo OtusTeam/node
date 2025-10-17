@@ -1,6 +1,6 @@
 const range = require('lodash.range');
 
-const USERS_COUNT = 10000 // 50 тысяч юзеров
+const USERS_COUNT = 50000 // 50 тысяч юзеров
 
 const user = {
   name: 'Nik',

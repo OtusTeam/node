@@ -6,7 +6,8 @@ const child = spawn('ls', ['-lh', './']);
 // Если нужно передать stdout -> console.log.
 
 child.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
+  console.log('test');
+  // console.log(`stdout: ${data}`);
 });
 
 child.stderr.on('data', (data) => {

@@ -2,23 +2,24 @@
 
 const { exec } = require('child_process');
 
-// exec('ls -lh', (error, stdout, stderr) => {
-//   if (error) {
-//     console.error(`exec error: ${error}`);
-//     return;
-//   }
-//   console.log(`stdout: ${stdout}`);
-//   console.error(`stderr: ${stderr}`);
-// });
+exec('ls -lh', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+
+  console.log(`stdout: ${stdout}`);
+  console.error(`stderr: ${stderr}`);
+});
 
 // --user_id=100
 
 // Как передать агрумент
 // args - коротка запись -- длинная запись
-exec('node ./src/script.js --user_id=100', (error, stdout, stderr) => {
-  console.log(`stdout: ${stdout}`);
-  console.error(`stderr: ${stderr}`);
-})
+// exec('node ./src/script.js --user_id=100', (error, stdout, stderr) => {
+//   console.log(`stdout: ${stdout}`);
+//   console.error(`stderr: ${stderr}`);
+// })
 
 
 

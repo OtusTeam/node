@@ -22,7 +22,9 @@ const upload = multer({ storage });
 // Маршрут для загрузки файла
 app.post('/upload', upload.single('file'), (req, res) => {
     try {
+        // В handler
         console.log('req.file', req.file);
+        // Положить в БД
 
         // Пишете в реальную систему, то должна быть связь между файловой системой и базой.
 
