@@ -1,6 +1,6 @@
 import range from 'lodash.range';
 
-const USERS_COUNT = 1000
+const USERS_COUNT = 10000
 
 const user = {
   name: 'Nik',

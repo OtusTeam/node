@@ -19,16 +19,32 @@ app.get('/slow', (req, res) => {
   const likes = concatLikes(data.users)
   console.log(likes);
 
-  console.timeEnd('slow')
+  console.timeEnd('slow');
 
   return res.status(200).send({ likes })
 })
 
+// new Error();
+
+// return { error: null, res } // { error: message }; 
+
+// [err, res] 
+
+// Берете 1 инстанс и просите запустить его с флагом --inspect
+// просите открыть порт 9229
+
+setInterval(() => {
+  console.log('interval');
+  mem.show();
+}, 10000)
+
 app.get('/big-reverse', (req, res) => {
-  let arr = Array(1e6).fill("some string");
+  mem.show();
+
+  let arr = Array(1e7).fill("some string");
   arr.reverse();
 
-  mem.show()
+  mem.show();
 
   return res.status(200).send({ success: true })
 })
@@ -49,7 +65,7 @@ app.listen(PORT, (err) => {
 
 function concatLikes(users) {
   return users.reduce((res, user) => {
-    res.push(user.like) // concat медленее push, потому что создает новый массив.
+    res = res.concat(user.like) // concat медленее push, потому что создает новый массив.
     
     return res
   }, [])

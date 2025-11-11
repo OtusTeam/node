@@ -1,4 +1,4 @@
-// import { PerformanceObserver, performance } from 'node:perf_hooks';
+import { PerformanceObserver, performance } from 'node:perf_hooks';
 
 // const start = performance.now();
 
@@ -15,8 +15,8 @@
 
 
 const obs = new PerformanceObserver((items) => {
-    const entities = items.getEntries();
-    console.log(items);
+  const entities = items.getEntries();
+  console.log(items);
 
   console.log(entities[0].name, entities[0].duration);
 });
