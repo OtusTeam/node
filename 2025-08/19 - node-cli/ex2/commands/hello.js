@@ -1,11 +1,13 @@
 
-module.exports = function(program) {
+module.exports = function (program) {
   program
     .command('hello')
-    .requiredOption('-n, --name <type>', 'Specify your name')
+    .option('-w, --welcome <welcome>', 'Specify welcome phrase', 'Hello')
+    .requiredOption('-n, --name <name>', 'Specify your name')
     .action(async (options) => {
+      const welcome = options.welcome;
       const name = options.name || 'World';
-      console.log(`Hello, ${name}!`);
+      console.log(`${welcome}, ${name}!`);
 
       return Promise.resolve();
     });

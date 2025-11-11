@@ -9,7 +9,20 @@ const goodbye = require('./commands/goodbye');
 // Иметь разные опции
 // Или иметь команды.
 
-;(async() => {
+// ;(async() => {
+//   program
+//     .name(packageJSON.name)
+//     .description(packageJSON.description)
+//     .version(packageJSON.version)
+
+//   hello(program);
+//   goodbye(program);
+
+//   await program.parseAsync(process.argv);
+//   // await - если наши actions(наши задачи) они асинхронные
+// })();
+
+; (async () => {
   program
     .name(packageJSON.name)
     .description(packageJSON.description)
@@ -20,26 +33,10 @@ const goodbye = require('./commands/goodbye');
       console.log(`About to call action handler for subcommand: ${actionCommand.name()}`);
       console.log('arguments: %O', actionCommand.args);
       console.log('options: %o', actionCommand.opts());
-    });
-
-  hello(program);
-  goodbye(program);
-
-  await program.parseAsync(process.argv);
-  // await - если наши actions(наши задачи) они асинхронные
-})();
-
-/*
-;(async () => {
-  // 
-  program
-    .name(packageJSON.name)
-    .description(packageJSON.description)
-    .version(packageJSON.version);
+    });;
 
   hello(program);
   goodbye(program);
 
   await program.parseAsync(process.argv);
 })();
-*/
