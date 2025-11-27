@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { MongoClient } from 'mongodb';
 
 import { Dog } from './dogs.interface';
 
@@ -9,7 +10,7 @@ import { Dog } from './dogs.interface';
 export class DogsService {
   private dogs: Dog[];
 
-  constructor() {
+  constructor(private mongoClient: MongoClient) {
     this.dogs = [
       { id: 1, name: 'barbos' },
       { id: 2, name: 'sharik' },

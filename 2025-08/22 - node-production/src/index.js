@@ -6,7 +6,9 @@ const promMid = require('express-prometheus-middleware');
 const config = require('./config');
 const client = require('./db');
 
-;(async () => {
+; (async () => {
+  console.log('Test');
+
   await client.connect();
 
   const app = express();
@@ -23,7 +25,7 @@ const client = require('./db');
 
   app.get('/hello/:name', (req, res) => {
     res.json({
-      msg: `Hello ${req.params.name}`, 
+      msg: `Hello ${req.params.name}`,
       hostname: os.hostname()
     });
   });
@@ -39,9 +41,9 @@ const client = require('./db');
 
     const countItem = await collection.findOne({ id: 'count' });
 
-    return res.json({ 
-      count: countItem.count, 
-      hostname: os.hostname() 
+    return res.json({
+      count: countItem.count,
+      hostname: os.hostname()
     });
   })
 

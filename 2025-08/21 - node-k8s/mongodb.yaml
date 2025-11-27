@@ -49,5 +49,5 @@ spec:
       protocol: TCP
       port: 27017        # порт, по которому будет доступен сервис
       targetPort: 27017  # порт внутри контейнера MongoDB
-      nodePort: 30002
+      nodePort: 31002
   type: NodePort         # для доступа извне через minikube

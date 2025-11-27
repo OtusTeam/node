@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:
-    nodejs-simple-deployment
+    nodejs-simple-08-2025-deployment
 spec:
   replicas: 3
   selector:
@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: web-server
-        image: nlapshin/nodejs-simple-k8s
+        image: nlapshin/nodejs-simple-08-2025-k8s
         ports:
           - containerPort: 4000

@@ -32,7 +32,7 @@ services:
       dockerfile: Dockerfile
 
     environment:
-      - PORT=6000
+      - API_PORT=6000
 
     networks:
       - api-network
@@ -47,11 +47,37 @@ services:
       dockerfile: Dockerfile
 
     environment:
-      - PORT=6000
+      - API_PORT=6000
 
     networks:
       - api-network
       - cache-network
+
+  nodejs-server-3:
+    container_name: api-3 # имя контейнеру
+    hostname: api_third # hostname контейнера, который будет внутри
+    restart: "unless-stopped" # restart policy
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      - API_PORT=6000
+
+    networks:
+      - api-network
+      - cache-network
+
+
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    hostname: mongo
+    restart: "unless-stopped"
+
+    networks:
+      - api-network
 
   redis-cache:
     image: redis

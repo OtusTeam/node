@@ -4,10 +4,10 @@ const { MongoClient } = require('mongodb');
 const express = require('express');
 const app = express();
 
-;(async() => {
+; (async () => {
   let count = 0;
 
-  const client = new MongoClient('mongodb://192.168.49.2:30002/k8s');
+  const client = new MongoClient('mongodb://192.168.49.2:31002/k8s');
 
   await client.connect();
 

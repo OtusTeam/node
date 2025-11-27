@@ -33,14 +33,15 @@ export class AuthGuard implements CanActivate {
 
     const user = {
       username: 'nik',
-      role: Role.admin
+      role: Role.user
     };
 
     if (!this.roles.includes(user.role)) {
       return false; // Выбросить ошибку 403
     }
 
-    // Как реализовать сложнее передачу юзера -> хранить requestId и бд(redis) по requestId мета информацию
+    // Как реализовать сложнее передачу юзера 
+    // -> хранить requestId и бд(redis) по requestId мета информацию
 
     request.user = user;
 

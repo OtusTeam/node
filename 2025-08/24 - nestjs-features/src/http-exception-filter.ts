@@ -8,6 +8,7 @@ import { Response } from 'express';
 
 import { NotFoundException } from './animals/animals.controller';
 
+
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
@@ -15,6 +16,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const status = exception.getStatus();
 
+    console.log('custom error');
     console.log(exception instanceof NotFoundException)
 
     response.status(status).json({

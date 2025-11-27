@@ -1,6 +1,7 @@
 upstream api_proxy {
   server api_first:6000;
   server api_second:6000;
+  server api_third:6000;
 }
 
 server {
