@@ -1,0 +1,345 @@
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+</p>
+
+[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
+[travis-url]: https://travis-ci.org/nestjs/nest
+[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
+[linux-url]: https://travis-ci.org/nestjs/nest
+  
+  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
+<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
+<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
+<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
+<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
+  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+
+## Description
+
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## Running the app
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+## Support
+
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+  Nest is [MIT licensed](LICENSE).
+
+REST API
+
+Сильно привязывается к HTTP протоколу.
+Использует статусы, методы, пути и прочие вещи, для взаимодействия.
+
+Пишут свой протокол(способ взаимодействия) поверх HTTP протокол
+Более высокоуровневая обертка на HTTP протокол.
+
+- схемы взаимодействия.
+- CRUD -> query(R) + mutation(CUD).
+- Вместо path -> что-то похожее на вызов функции. createUser(data), updateUser(data), deleteUser(data)
+
+Со стороны бэка:
+- Мы описываем схему
+- Мы описываем как получать конкретые поля в схеме(resolver-ы). Создаем резолверы.
+- Мы описываем как изменять данные(мутировать). Создаем мутации.
+
+teams: [Team!]
+
+teams: null +
+teams: [] +
+teams: [{ id: 1, name: 'test' }] +
+teams: [{ id: 1, name: 'test' }, null] -
+
+
+
+
+Представим что у нас есть 
+
+users -> orders -> orders-detail-info
+
+// Первый запрос. GET /users/1 - получаем юзера
+// Второй запрос. GET /users/1/orders - получаем заказы
+// Третий запрос. GET /orders/100500 - получаем информацию о заказах
+
+// Сформировать запрос специальным образом
+{
+  users: {
+    orders: {
+      info: {
+
+      }
+    }
+  }
+}
+
+# CRUD
+
+Какие методы нужно использовать HTTP REST API, чтобы сделать CRUD
+
+--- query
+R - Read GET getUsers, getUser, getActiveUser
+users
+
+--- mutation. У каждой мутации есть имя
+C - Create POST createUser
+U - Update PUT/PATCH updateUser
+D - Delete DELETE deleteUser
+
+GRAPHQL
+
+
+### Queries
+
+```
+query {
+  users {
+    id
+    firstName
+    lastName
+    gender
+    role
+    teams {
+      id
+      name
+    }
+  }
+}
+```
+
+```
+query {
+  user(id: 1) {
+    id
+    firstName
+    lastName
+    teams {
+      id
+      name
+    }
+  }
+}
+```
+
+```
+query GetUsers($includeTeams: Boolean!) {
+  users {
+    id
+    firstName
+    lastName
+    teams @include(if: $includeTeams) {
+      id
+      name
+    }
+  }
+}
+```
+
+```
+query {
+  users {
+    ...UserFields
+  }
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  teams {
+    id
+    name
+  }
+}
+```
+
+```
+query {
+  firstUser: user(id: 1) {
+    id
+    fullName: firstName
+  }
+  secondUser: user(id: 2) {
+    id
+    fullName: firstName
+  }
+}
+```
+
+```
+query GetPaginatedUsers($limit: Int!, $offset: Int!) {
+  users(limit: $limit, offset: $offset) {
+    id
+    firstName
+    lastName
+  }
+}
+
+{
+  "limit": 10,
+  "offset": 20
+}
+```
+
+```
+query {
+  users(filter: { role: Admin }) {
+    id
+    firstName
+    lastName
+    role
+  }
+}
+```
+
+```
+query GetUsersByTeam($teamId: Int!) {
+  users(filter: { teamId: $teamId }) {
+    id
+    firstName
+    lastName
+  }
+}
+
+{
+  "teamId": 1
+}
+```
+
+```
+mutation CreateUser($input: UserInput!) {
+  createUser(data: $input) {
+    id
+    firstName
+    lastName
+    teams {
+      id
+      name
+    }
+  }
+}
+
+{
+  "input": {
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "password": "securepass123",
+    "teamId": 1
+  }
+}
+```
+
+```
+mutation CreateTeam($input: TeamInput!) {
+  createTeam(data: $input) {
+    id
+    name
+  }
+}
+
+{
+  "input": {
+    "name": "Backend Developers"
+  }
+}
+
+```
+
+```
+mutation AddUserToTeam($userId: Int!, $teamId: Int!) {
+  addMember(userId: $userId, teamId: $teamId) {
+    id
+    name
+    members {
+      id
+      firstName
+      lastName
+    }
+  }
+}
+```
+
+```
+mutation RemoveUserFromTeam($userId: Int!, $teamId: Int!) {
+  removeMember(userId: $userId, teamId: $teamId) {
+    id
+    name
+    members {
+      id
+      firstName
+      lastName
+    }
+  }
+}
+
+{
+  "userId": 3,
+  "teamId": 1
+}
+```
+
+```
+subscription {
+  userAdded {
+    id
+    firstName
+    lastName
+    teams {
+      id
+      name
+    }
+  }
+}
+```
+
+1. Избыточность REST endpoint-ов. Передаем большие данные + фиксированность обмен
+2. Вместо одного хорошего запроса => несколько разнообразных.
+3. По умолчанию в REST API не схемы.
+4. Не хватает абстракции над HTTP(абстракция над TCP). Не использовать статусы, методы и т.д. Разработчикам удобно вызывать функции. getUsers(filter): Users

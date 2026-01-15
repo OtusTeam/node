@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-simple-08-2025-service
+  labels:
+    component: web-server
+spec:
+  type: NodePort
+  ports:
+      # внутренний порт сервиса
+    - port: 3050
+      # проброс к поду
+      targetPort: 4000
+      # отдаем во вне
+      nodePort: 31001
+  selector:
+    component: web-server
