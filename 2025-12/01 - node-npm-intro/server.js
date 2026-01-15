@@ -2,7 +2,9 @@ import http from 'http';
 const hostname = '127.0.0.1';
 const port = 3001;
 
-console.log('ser');
+console.log(process.env.NODE_ENV);
+
+console.log('sasdf');
 
 const server = http.createServer((req, res) => {
   console.log('got request')

@@ -1,17 +1,18 @@
 {
   "name": "example-2024-04-26",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "echo started",
+    "start": "node ./server.js",
     "start3331231231": "echo started",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^5.2.1",
     "jquery": "^3.7.1"
   },
   "devDependencies": {
