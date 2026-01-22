@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "strict": true,   // Запрещает использование любых нестрогих типов
+    "noImplicitAny": true, // Запрещает использование неявных any
+    "strictFunctionTypes": true,  // Запрещает использование функций с несовместимыми типами
+    "strictPropertyInitialization": true, // Запрещает использование неинициализированных свойств
+    "strictBindCallApply": true, // Запрещает использование bind, call и apply
+    "noImplicitThis": true, // Запрещает использование this в неконтекстных местах
+    "noImplicitReturns": true, // Запрещает использование return в неконтекстных местах
+    "alwaysStrict": true, // Запрещает использование нестрогого режима                          
+    "esModuleInterop": true,  // Позволяет использовать CommonJS и ES Modules вместе
+    "checkJs": true, // Проверяет JavaScript файлы
+    "noEmitOnError": true, // Не генерирует файлы, если есть ошибки
+    "allowJs": true, // Позволяет использовать JavaScript файлы
+    "declaration": true, // Генерирует declaration файлы
+    "experimentalDecorators": true, // Позволяет использовать декораторы
+    "target": "ES2017", // Задает целевую версию ECMAScript
+    "lib": ["ES2017"], // Задает библиотеки
+    "jsx": "react", // Задает JSX режим (react, preserve, react-jsx, react-jsxdev)  (react-jsx - используется для React 17 и выше)
+    "module": "ESNext", // Задает модульную систему
+    "moduleResolution": "node", // Задает модульную систему
+    "skipLibCheck": true, // Пропускает проверку библиотек
+    "resolveJsonModule": true, // Позволяет использовать JSON файлы
+    "types": ["node"], // Задает типы
+    "downlevelIteration": true // Позволяет использовать downlevelIteration
+  },
+  "include": ["src/**/*"], // Задает включаемые файлы
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"] // Задает исключаемые файлы (node_modules - исключает node_modules папку, **/*.spec.ts - исключает все файлы с расширением .spec.ts, **/*.test.ts - исключает все файлы с расширением .test.ts)
+}
