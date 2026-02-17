@@ -1,4 +1,3 @@
-import { Age } from './../type-vs-interface/08-when-to-use';
 // ============================================
 // Типы данных TypeScript - Простые примеры
 // ============================================
@@ -36,7 +35,6 @@ const fullName: string = `${firstName} ${lastName}`;
 
 console.log('Full name:', fullName); // Иван Петров
 
-
 // ============================================
 // 4. ARRAY - массивы
 // ============================================
@@ -45,7 +43,7 @@ const numbers: number[] = [1, 2, 3, 4, 5];
 const fruits: string[] = ["яблоко", "банан", "апельсин"];
 
 // Способ 2: с использованием Array<type>
-const colors: string[] = ["красный", "зеленый", "синий"];  
+const colors: string[] = ["красный", "зеленый", "синий"];
 console.log('Colors:', colors); // ["красный", "зеленый", "синий"]
 console.log('Numbers:', numbers); // [1, 2, 3, 4, 5]
 console.log('First fruit:', fruits[0]); // яблоко
@@ -96,7 +94,7 @@ console.log('HTTP Status:', httpStatus); // 200
 // 7. ANY - произвольный тип
 // ============================================
 // any отключает проверку типов
-let anyValue: unknown = 42;   // const anyValue: unknown = 42;  
+let anyValue: unknown = 42;   // const anyValue: unknown = 42;
 console.log('Any value:', anyValue); // 42
 anyValue = "теперь это строка";
 console.log('Any value:', anyValue); // теперь это строка
@@ -188,6 +186,32 @@ const processUnknown = (value: unknown): void => {
 }
 
 processUnknown(unknownValue);
+
+type User = {
+    name: string;
+    age: number;
+} & { gender: 'm' | 'w' }
+
+interface IUser {
+    name: string;
+    age: number;
+}
+
+const obj1111: Partial<IUser> = {
+    // name: 'test',
+    // age: 1235
+};
+
+obj1111.name = 'test';
+obj1111.age = 1235;
+
+const notUser = {
+    key: 'value'
+};
+
+function getUser() {
+    return notUser;
+}
 
 
 // ============================================
