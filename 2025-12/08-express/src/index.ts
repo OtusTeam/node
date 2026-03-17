@@ -4,7 +4,7 @@ import { requestLogger } from './middleware/logger.js';
 import tasksRouter from './routes/tasks.js';
 
 const app = express(); // Factory для серверов
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3333;
 
 // app.use - это регистрация миддлеверки
 // Когда передаем мы используем string + content-type application/json
@@ -13,6 +13,18 @@ app.use(express.json());
 
 // Логгирование всех входящих запросов (метод, путь, статус, время)
 app.use(requestLogger);
+
+// app.use(requireAuth);
+
+app.get('/api/users/instance/:id', (req, res) => {
+  console.log('req.startTimestamp ', req.startTimestamp);
+
+  res.json({ ep: '/api/users/instance/:id' });
+})
+
+// app.get('/api/users/search', (req, res) => {
+//   res.json({ ep: '/api/users/search' });
+// })
 
 app.use('/api/tasks', tasksRouter);
 app.use(errorHandler);

@@ -4,8 +4,10 @@ declare global {
       validated?: unknown;
       validatedParams?: unknown;
       validatedBody?: unknown;
+      startTimestamp?: number;
     }
   }
 }
 
-export {};
+export { };
+

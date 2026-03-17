@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import { error } from '../utils/response.js';
 
 const API_KEY = process.env.API_KEY || 'demo-secret-key';

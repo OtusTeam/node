@@ -12,7 +12,11 @@ import {
 const router = Router();
 
 // GET / - все таски (без авторизации)
-router.get('/', validate(tasksQuerySchema, 'query'), tasksController.getAll.bind(tasksController));
+router.get(
+  '/',
+  validate(tasksQuerySchema, 'query'),
+  tasksController.getAll.bind(tasksController)
+);
 
 // GET /:id - получаем таску по id
 router.get(
