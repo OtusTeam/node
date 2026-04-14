@@ -1,0 +1,19 @@
+{
+  "name": "bullmq-notifications-ts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BullMQ notification queue example (TypeScript)",
+  "scripts": {
+    "producer": "tsx src/producer.ts",
+    "worker": "tsx src/worker.ts"
+  },
+  "dependencies": {
+    "bullmq": "^5.48.1",
+    "ioredis": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "kafka-group-ts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kafka consumer group and partitioning example (TypeScript, KafkaJS)",
+  "scripts": {
+    "admin:create-topic": "tsx src/admin-create-topic.ts",
+    "producer": "tsx src/producer.ts",
+    "consumer": "tsx src/consumer.ts",
+    "consumer:a": "CLIENT_ID_SUFFIX=a tsx src/consumer.ts",
+    "consumer:b": "CLIENT_ID_SUFFIX=b tsx src/consumer.ts"
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

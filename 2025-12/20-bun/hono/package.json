@@ -1,0 +1,21 @@
+{
+  "name": "hono",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun run src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "latest",
+    "hono": "latest",
+    "zod": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

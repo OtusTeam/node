@@ -1,0 +1,18 @@
+{
+  "name": "rabbitmq-pubsub-ts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RabbitMQ pub/sub fanout example on TypeScript",
+  "scripts": {
+    "publisher": "tsx src/publisher.ts",
+    "subscriber": "tsx src/subscriber.ts"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

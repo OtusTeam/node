@@ -1,0 +1,18 @@
+{
+  "name": "kafka-simple-ts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kafka simple producer/consumer example (TypeScript, KafkaJS)",
+  "scripts": {
+    "producer": "tsx src/producer.ts",
+    "consumer": "tsx src/consumer.ts"
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}
