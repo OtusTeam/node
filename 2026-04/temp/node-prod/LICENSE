@@ -1,0 +1,72 @@
+MIT License
+
+Copyright (c) 2022 Nikolay Lapshin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+// Запустить в продакшен.
+
+// 1. Купить сервер
+// AWS - amazon web server.
+// Google cloud, digital ocean, cloudflare, godaddy.
+// Spring host, github
+// heroku.
+// mail yandex имеют облачные решения
+// vds очень много.
+// Какие метрики интересуют?
+// 1. Процессор + количество ядер.
+// 2. ОЗУ - память. 512Мб. 8Гб для среднего проекта, 16 Гб, 32Гб и т.д.
+// 3. Жесткий диск. 5Гб. 30Гб. 100Гб если запускаем на сервер базу данных.
+// 4. Пропускная способность. 10Гб и количества трафик.
+
+// 2. Настроить сервер.
+// - доступ по ssh. Окрыть порт 22 и дать доступ. Доступ по паролю и по ключу.
+// - открыть доступ до портов. 80(http) и 443(https).
+// - другой тюнинг.
+
+// 3.а. Начать настраивать continues deployment
+// 3.б. Настроить развертывание веб-сервера ручками, а потом настроить CD.
+
+// Поменять порт на 80.
+// nik       102416  0.0  0.2 319444 33324 pts/2    Sl+  20:25   0:00 node ./src/index.js
+// Node js
+// 1. Демонизация или запуск фоном. forever или pm2 или docker или docker-compose или k8s. +
+// 2. Подумать о масштабировании. Используем инструменты выше. +
+// 3. Настроить балансировщик. Nginx, apache, балансирощики которые предоставляют хостеры.
+// 3.1. Настроить домен.
+// 3.2. Настроить HTTPS.
+// 3.2.1. HTTPS есть из коробки
+// 3.2.2. Вместе с доменом купить сертификат
+// 3.2.3. Letsencrupt
+// 4. CI/CD - Continues integration и Continues Deployment
+// CI: Github actions, teamcity, cicle CI, gitlab CI, bitbucket, travis ci. 
+// Платная.
+// Jenkins - бесплатный.
+// linter - проверить качество кода.
+// test - запустить тесты.
+// code coverage - покрытие тестами.
+// проверка схем и т.д.
+// CD - доставка кода
+// Доставка кода до удаленного сервера.
+// 5. Мониторинг
+// Prometheus + graphana
+// Prometheus - это сборщик метрик. Общие метрики(CPU/mem/disk space/temp),
+// так и свои метрики, допустим, сколько выполняется запрос.
+// Graphana - для визуализации и, возможно, аларма.
+// Sentry

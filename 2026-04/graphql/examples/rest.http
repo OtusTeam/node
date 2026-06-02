@@ -1,0 +1,33 @@
+### REST-эндпоинты рядом с GraphQL (сравнение «много ресурсов» vs один /graphql)
+@baseUrl = http://localhost:3000
+
+### Список пользователей (TypeORM подтягивает teams через relations)
+GET {{baseUrl}}/users
+
+### Пользователь по id
+GET {{baseUrl}}/users/1
+
+### Создать пользователя (тело как у GraphQL UserInput, но без GraphQL)
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "firstName": "Bob",
+  "lastName": "Smith",
+  "password": "secret",
+  "teamId": 1
+}
+
+### Команды
+GET {{baseUrl}}/teams
+
+### Команда по id
+GET {{baseUrl}}/teams/1
+
+### Создать команду
+POST {{baseUrl}}/teams
+Content-Type: application/json
+
+{
+  "name": "Infra"
+}

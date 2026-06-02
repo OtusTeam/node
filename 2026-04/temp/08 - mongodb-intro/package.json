@@ -1,0 +1,27 @@
+{
+  "name": "08---mongodb-intro",
+  "version": "1.0.0",
+  "main": "примеры_mongo_запросов.js",
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.ts\"",
+    "dev": "tsx --watch ./src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "envalid": "^8.0.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.16.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.3"
+  }
+}

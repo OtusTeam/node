@@ -1,0 +1,19 @@
+{
+  "name": "bun",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch index.ts",
+    "start": "bun run index.ts",
+    "bench": "bun run bench.ts",
+    "bench:node": "node bench-node.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "autocannon": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

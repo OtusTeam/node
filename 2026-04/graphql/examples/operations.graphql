@@ -1,0 +1,117 @@
+# Примеры для Apollo Sandbox: http://localhost:3000/graphql
+# (или любого клиента: Insomnia, Altair, graphql-request)
+
+query AllUsersWithTeams {
+  users {
+    id
+    firstName
+    lastName
+    role
+    teams {
+      id
+      name
+    }
+  }
+}
+
+query UserById {
+  user(id: 1) {
+    id
+    firstName
+    lastName
+    teams {
+      id
+      name
+    }
+  }
+}
+
+query TeamsAndMembers {
+  teams {
+    id
+    name
+    members {
+      id
+      firstName
+      lastName
+    }
+  }
+}
+
+mutation CreateTeam {
+  createTeam(data: { name: "Platform" }) {
+    id
+    name
+  }
+}
+
+mutation CreateUser {
+  createUser(
+    data: {
+      firstName: "Alice"
+      lastName: "Nguyen"
+      password: "changeme"
+      teamId: 1
+    }
+  ) {
+    id
+    firstName
+    lastName
+    teams {
+      id
+      name
+    }
+  }
+}
+
+mutation AddMember {
+  addMember(userId: 2, teamId: 1) {
+    id
+    name
+    members {
+      id
+      firstName
+    }
+  }
+}
+
+mutation RemoveMember {
+  removeMember(userId: 2, teamId: 1) {
+    id
+    name
+    members {
+      id
+    }
+  }
+}
+
+subscription OnUserAdded {
+  userAdded {
+    id
+    firstName
+    lastName
+  }
+}
+
+query AllUsersWithTeams {
+  users {
+    ...UserDetail
+    teams {
+      ...TeamDetail
+    }
+  }
+}
+
+# Фрагмент для данных пользователя
+fragment UserDetail on User {
+  id
+  firstName
+  lastName
+  role
+}
+
+# Фрагмент для данных команды
+fragment TeamDetail on Team {
+  id
+  name
+}

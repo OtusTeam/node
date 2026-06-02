@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Длинное опросы</title>
+</head>
+<body>
+    <h1>Пример длинного опроса</h1>
+    <div id="data"></div>
+
+    <script>
+        async function longPoll() {
+            try {
+                const response = await fetch('http://localhost:3000/long-poll');
+                const result = await response.json();
+
+                if (result.success) {
+                    const dataDiv = document.getElementById('data');
+                    const newData = document.createElement('p');
+                    newData.textContent = result.data;
+                    dataDiv.appendChild(newData);
+                }
+
+                // Сразу отправляем следующий запрос
+                longPoll();
+            } catch (error) {
+                console.error('Ошибка при длинном опросе:', error);
+                setTimeout(longPoll, 5000); // Повтор через 5 секунд при ошибке
+            }
+        }
+
+        // Запуск процесса длинного опроса
+        longPoll();
+    </script>
+</body>
+</html>

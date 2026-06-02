@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример SSE</title>
+</head>
+<body>
+    <h1>Пример Server-Sent Events</h1>
+    <div id="messages"></div>
+
+    <script>
+        // Создаем подключение к SSE-эндпоинту
+        const eventSource = new EventSource('http://localhost:3000/events');
+
+        // Обработка сообщений от сервера
+        eventSource.onmessage = (event) => {
+            const messagesDiv = document.getElementById('messages');
+            const newMessage = document.createElement('p');
+            newMessage.textContent = event.data;
+            messagesDiv.appendChild(newMessage);
+        };
+
+        // Обработка ошибок
+        eventSource.onerror = (error) => {
+          console.log(error.message);
+
+            console.error('Ошибка SSE:', error);
+        };
+    </script>
+</body>
+</html>

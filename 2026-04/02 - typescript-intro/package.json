@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "compile": "tsc"
+  },
+  "dependencies": {
+    "tsc-node": "^0.0.3",
+    "typescript": "^5.7.3"
+  }
+}

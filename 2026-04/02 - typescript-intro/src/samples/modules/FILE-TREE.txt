@@ -1,0 +1,128 @@
+src/samples/modules/
+│
+├── 📄 index.ts                               # Точка входа - запускает все примеры
+│
+├── 📖 README.md                              # Полное руководство по модулям
+├── 📋 MODULES-CHEATSHEET.md                  # Быстрая справка - все в одном месте
+├── 📂 STRUCTURE.md                           # Описание структуры проекта
+└── 📝 FILE-TREE.txt                          # Этот файл
+│
+├── 📁 01-basic-exports/                      
+│   │   Базовый экспорт (Named Exports)
+│   │   Что изучается: export function, const, class
+│   │
+│   ├── math.ts                               # Функции add/subtract, PI, Calculator
+│   └── demo.ts                               # Примеры импорта и использования
+│
+├── 📁 02-default-export/                     
+│   │   Экспорт по умолчанию (Default Export)
+│   │   Что изучается: export default, комбинация с named
+│   │
+│   ├── logger.ts                             # Класс Logger (default + named)
+│   └── demo.ts                               # Примеры использования Logger
+│
+├── 📁 03-re-exports/                         
+│   │   Ре-экспорт / Barrel Exports
+│   │   Что изучается: export from, barrel pattern
+│   │
+│   ├── index.ts                              # Barrel файл - объединяет экспорты
+│   └── demo.ts                               # Импорт из одного места
+│
+├── 📁 04-import-aliases/                     
+│   │   Псевдонимы импорта
+│   │   Что изучается: import as, import *, переименование
+│   │
+│   └── demo.ts                               # Все способы импорта с псевдонимами
+│
+├── 📁 05-dynamic-import/                     
+│   │   Динамический импорт
+│   │   Что изучается: async import, lazy loading
+│   │
+│   └── demo.ts                               # Примеры динамической загрузки
+│
+└── 📁 06-module-patterns/                    
+    │   Паттерны модулей
+    │   Что изучается: Singleton, Configuration patterns
+    │
+    ├── singleton.ts                          # Паттерн Singleton (Database)
+    ├── config.ts                             # Паттерн конфигурации
+    └── demo.ts                               # Использование паттернов
+
+
+ЗАПУСК:
+========
+npm run start_modules                          # Запустить все примеры
+
+tsc src/samples/modules/index.ts &&            # Или вручную
+node src/samples/modules/index.js
+
+
+ПОРЯДОК ИЗУЧЕНИЯ:
+==================
+1. 📖 README.md                               # Сначала прочитайте теорию
+2. 01-basic-exports/                          # Основы
+3. 02-default-export/                         # Альтернативный способ
+4. 03-re-exports/                             # Организация кода
+5. 04-import-aliases/                         # Работа с именами
+6. 05-dynamic-import/                         # Продвинутые техники
+7. 06-module-patterns/                        # Практические паттерны
+8. 📋 MODULES-CHEATSHEET.md                   # Быстрая справка
+
+
+ЧТО ВЫ ИЗУЧИТЕ:
+================
+✅ Named exports:        export function add() {}
+✅ Default exports:      export default class Logger {}
+✅ Re-exports:           export { add } from './math'
+✅ Import aliases:       import { add as sum } from './math'
+✅ Namespace import:     import * as Math from './math'
+✅ Dynamic import:       await import('./module')
+✅ Barrel exports:       index.ts для организации
+✅ Module patterns:      Singleton, Configuration
+
+
+КЛЮЧЕВЫЕ ФАЙЛЫ:
+===============
+📄 index.ts              → Запускает все примеры по порядку
+📖 README.md             → Полная документация с примерами
+📋 CHEATSHEET.md         → Быстрая справка по синтаксису
+📂 STRUCTURE.md          → Описание структуры и концепций
+
+
+ТИПЫ МОДУЛЕЙ:
+=============
+📦 01: Named Exports     → Множественные экспорты
+📦 02: Default Export    → Один основной экспорт
+📦 03: Re-exports        → Barrel pattern, публичный API
+📦 04: Aliases           → Переименование, namespace
+📦 05: Dynamic           → Lazy loading, code splitting
+📦 06: Patterns          → Singleton, Configuration
+
+
+СТАТИСТИКА:
+===========
+Разделов:       6
+Файлов кода:    12 TypeScript
+Документации:   4 Markdown
+Паттернов:      2 (Singleton, Configuration)
+Примеров:       30+ различных техник
+
+
+БЫСТРЫЙ СТАРТ:
+==============
+1. npm run start_modules                      # Запустить все
+2. Открыть README.md                          # Изучить теорию
+3. Смотреть код в порядке 01 → 06            # По очереди
+4. Изменить и запустить снова                # Экспериментировать
+5. Использовать CHEATSHEET.md                # Для справки
+
+
+ПОЛЕЗНЫЕ КОМАНДЫ:
+=================
+npm run start_modules                          # Все примеры
+tsc src/samples/modules/01-basic-exports/demo.ts  # Отдельный модуль
+node src/samples/modules/01-basic-exports/demo.js # Запуск скомпилированного
+
+
+Удачи в изучении модулей TypeScript! 🚀📦
+

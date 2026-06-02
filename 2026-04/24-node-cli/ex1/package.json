@@ -1,0 +1,15 @@
+{
+  "name": "my-nik-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "my-nik-cli": "./index.js"
+  },
+  "dependencies": {
+    "yargs": "^18.0.0"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}

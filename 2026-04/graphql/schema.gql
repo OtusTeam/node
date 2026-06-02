@@ -1,0 +1,57 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+enum EGenderType {
+  Female
+  Male
+}
+
+enum ERole {
+  Admin
+  User
+}
+
+type Mutation {
+  addMember(teamId: Int!, userId: Int!): TeamQuery
+  createTeam(data: TeamInput!): TeamQuery!
+  createUser(data: UserInput!): User!
+  removeMember(teamId: Int!, userId: Int!): TeamQuery
+}
+
+type Query {
+  team(id: Int!): TeamQuery
+  teams: [TeamQuery!]
+  user(id: Int!): User
+  users: [User!]!
+}
+
+type Subscription {
+  userAdded: User!
+}
+
+input TeamInput {
+  name: String!
+}
+
+type TeamQuery {
+  id: Int!
+  members: [User!]
+  name: String!
+}
+
+type User {
+  firstName: String
+  gender: EGenderType
+  id: Int!
+  lastName: String!
+  role: ERole
+  teams: [TeamQuery!]!
+}
+
+input UserInput {
+  firstName: String!
+  lastName: String!
+  password: String!
+  teamId: Int
+}

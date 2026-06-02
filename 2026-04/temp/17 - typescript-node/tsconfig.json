@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "allowJs": false,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "declaration": true
+  },
+  "include": ["./src/**/*"]
+}
