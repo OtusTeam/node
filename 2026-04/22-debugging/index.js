@@ -1,14 +1,17 @@
 // const test = () => {
 //   console.time('x')
-//   setTimeout(() => console.timeEnd("x"), 100)
 //   setTimeout(() => console.timeEnd("x"), 1000)
+//   setTimeout(() => console.timeEnd("x"), 10000)
 // }
 // test()
 // test()
 
-import { performance } from 'node:perf_hooks';
+// logger - для info/log/error/warn
+// prometheus - для общета выполнения функци
 
-console.log(performance.now());
+// import { performance } from 'node:perf_hooks';
+
+// console.log(performance.now());
 // console.log(new Date().getTime());
 
 const start = performance.now();
@@ -23,30 +26,44 @@ const duration = performance.now() - start;
 const durationDate = new Date().getTime() - startDate;
 console.log('duration', duration);
 console.log('durationDate', durationDate);
-// import pino from 'pino';
+import pino from 'pino';
 
-// const logger = pino();
+const logger = pino();
 
-// a();
+a();
 
-// function a() {
-//   b();
-// }
+function a() {
+  b();
+}
 
-// function b() {
-//   c()
-// }
+function b() {
+  c()
+}
 
-// function c() {
-//   const targetObject = {}
+function c() {
+  const targetObject = {}
 
-//   logger.info('before', targetObject.stack); // stdout
+  logger.info('before', targetObject.stack); // stdout
 
-//   Error.captureStackTrace(targetObject)
+  Error.captureStackTrace(targetObject)
 
-//   logger.error(targetObject.stack);
-//   // console.trace('stack trace');
-// }
+  logger.error(targetObject.stack);
+  // console.trace('stack trace');
+}
+
+class HTTPValidationError extends Error {
+}
+
+const error = new Error('error');
+const validationError = new HTTPValidationError('validation-error');
+
+
+
+console.log('error', error instanceof Error);
+console.log('error', error instanceof HTTPValidationError);
+
+console.log('validationError', validationError instanceof Error);
+console.log('validationError', validationError instanceof HTTPValidationError);
 
 // Как это делается в продакше
 // 1. Error tracking - или сами пишем ПО, готовое ПО sentry/rollbar

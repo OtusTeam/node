@@ -67,10 +67,10 @@ app.get('/slow', (req, res) => {
 //   mem.show();
 // }, 10000)
 
-let arr = [];
-
 app.get('/big-reverse', (req, res) => {
   mem.show();
+
+  let arr = [];
 
   arr = [...arr, ...Array(1e7).fill("some string")];
   console.log(arr.length);

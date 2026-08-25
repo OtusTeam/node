@@ -1,15 +1,16 @@
-FROM node:alpine as build-stage
+FROM node:alpine AS build-stage
 
 WORKDIR /usr/src/app
 
 COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
 
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
-COPY src ./src
+COPY cases ./cases
+COPY shared ./shared
 
-FROM node:alpine as run-stage
+FROM node:alpine AS run-stage
 
 WORKDIR /usr/src/app
 

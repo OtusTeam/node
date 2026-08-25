@@ -1,17 +1,28 @@
 {
   "name": "nodejs-process",
   "version": "1.0.0",
-  "description": "NodeJS process",
-  "main": "index.js",
+  "description": "NodeJS processes & threads — webinar cases",
+  "main": "cases/07-server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/server.js",
-    "start:prof": "node --prof ./src/server.js",
-    "start:clinic": "clinic doctor -- node ./src/server.js",
-    "start:bubbleprof": "clinic bubbleprof -- node ./src/server.js",
-    "start:debug": "npx nodemon ./src/server.js",
-    "start-cluster:debug": "npx nodemon ./src/server-cluster.js",
-    "start-pm2": "pm2 start src/server.js -i max"
+    "case:01": "node cases/01-event-loop",
+    "case:02": "node cases/02-exec",
+    "case:03": "node cases/03-spawn",
+    "case:04": "node cases/04-fork",
+    "case:05": "node cases/05-worker-threads",
+    "case:06": "node cases/06-piscina",
+    "case:07": "node cases/07-server",
+    "case:08": "node cases/08-server-worker",
+    "case:09": "node cases/09-cluster",
+    "case:10": "npx pm2 start cases/10-pm2/ecosystem.config.js",
+    "case:11": "node cases/11-profiling/cpu-hot.js",
+    "start": "node cases/07-server",
+    "start:cluster": "node cases/09-cluster",
+    "start:pm2": "npx pm2 start cases/10-pm2/ecosystem.config.js",
+    "stress": "node tools/stress-test.js",
+    "profile:clinic": "NO_INSIGHT=1 clinic doctor --dest .clinic --on-port 'autocannon -c 20 -d 10 http://localhost:$PORT/slow' -- node cases/07-server/index.js",
+    "profile:flame": "NO_INSIGHT=1 clinic flame --dest .clinic --on-port 'autocannon -c 20 -d 10 http://localhost:$PORT/slow' -- node cases/07-server/index.js",
+    "profile:cpu": "mkdir -p .profiles && node --cpu-prof --cpu-prof-dir=.profiles cases/11-profiling/cpu-hot.js",
+    "profile:0x": "0x --output-dir .profiles/0x --name cpu-hot -- node cases/11-profiling/cpu-hot.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +40,9 @@
     "piscina": "^4.9.2"
   },
   "devDependencies": {
+    "0x": "^5.8.0",
     "autocannon": "^7.11.0",
+    "clinic": "^13.0.0",
     "nodemon": "^2.0.22"
   }
 }
